@@ -1,4 +1,5 @@
 
+
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
@@ -8,12 +9,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_functional:1.0.0#> .
 
-:FunctionalMeasurement a samm:aspect;
-   samm:preferredName "SpecialCharacteristicMeasurment"@en ;
-   samm:description "Contains the Measurment for a special characteristic"@en ;
-   samm:properties (:test ) ;
+:FunctionalMeasurement a samm:Aspect ;
+   samm:properties ( ) ;
    samm:operations ( ) ;
    samm:events ( ) .
-
-:test a samm:property.
 
