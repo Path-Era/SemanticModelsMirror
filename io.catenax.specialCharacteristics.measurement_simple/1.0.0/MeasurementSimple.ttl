@@ -10,7 +10,7 @@
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_simple:1.0.0#> .
 
 :SimpleMeasurement a samm:Aspect ;
-   samm:properties ( :measurementTimestamp) ;
+   samm:properties ( :measurementTimestamp :measurement ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -20,7 +20,28 @@
    samm:characteristic :MeasurementTimestamp ;
    samm:exampleValue "2024-10-01"^^xsd:date .
 
+:measurement a samm:Property ;
+   samm:characteristic :MeasurementCharacteristic .
+
 :MeasurementTimestamp a samm:Characteristic ;
    samm:preferredName "MeasurementTimestamp"@en ;
    samm:dataType xsd:date .
+
+:MeasurementCharacteristic a samm:Characteristic ;
+   samm:dataType :Measurement .
+
+:Measurement a samm:Entity ;
+   samm:properties ( :unit :value ) .
+
+:unit a samm:Property ;
+   samm:characteristic :UnitCharaceristic .
+
+:value a samm:Property ;
+   samm:characteristic :ValueCharacteristic .
+
+:UnitCharaceristic a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:ValueCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:float .
 
