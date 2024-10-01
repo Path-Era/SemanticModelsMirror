@@ -60,13 +60,7 @@
 :MeasurmentObject a samm:Entity ;
    samm:preferredName "Measurmentobject"@en ;
    samm:description "This Entity represents a generic Measurment Object"@en ;
-   samm:properties ( :measurmentDateTime ) .
-
-:measurmentDateTime a samm:Property ;
-   samm:preferredName "measurmentTimestamp"@en ;
-   samm:description "Timestamp of the measurment."@en ;
-   samm:characteristic samm-c:Timestamp ;
-   samm:exampleValue "2024-09-30"^^xsd:dateTime .
+   samm:properties ( ) .
 
 :referenceValue a samm:Property ;
    samm:preferredName "Value of the reference measurement"@en ;
@@ -80,9 +74,20 @@
    samm:description "Value with an attached SI unit"@en ;
    samm:properties ( :value :unit ) .
 
+:customID a samm:Property ;
+   samm:preferredName "Custom ID"@en ;
+   samm:description "Identification of the Pin as defined on the blueprint"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "5" .
+
 :MeasurementCharacteristic a samm:Characteristic ;
    samm:preferredName "describe a value with an attached unit"@en ;
    samm:dataType :ValueSI .
+
+:PinCharacteristic a samm:Characteristic ;
+   samm:preferredName "Pin Characeristic"@en ;
+   samm:description "Characteristic to describe a reference PIn"@en ;
+   samm:dataType :PinEntity .
 
 :measurementPin a samm:Property ;
    samm:description "Pin to which this measurement is attributed to "@en ;
@@ -90,6 +95,16 @@
 
 :ValueCharacteristic a samm:Characteristic ;
    samm:dataType xsd:float .
+
+:position a samm:Property ;
+   samm:preferredName "PinPositon"@en ;
+   samm:description "Position of the pin according to the blue print"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "01" .
+
+:value a samm:Property ;
+   samm:description "measured Value"@en ;
+   samm:characteristic :ValueCharacteristic .
 
 :location a samm:Property ;
    samm:preferredName "Pin Location"@en ;
@@ -105,36 +120,6 @@
    samm:description "encapsulate all relevant information to identify pins for this measurement"@en ;
    samm:properties ( :measurementPin :referencePin :referenceValue :measuredValue ) .
 
-:referencePin a samm:Property ;
-   samm:description "Pin which is the other measuring point for the resistance measuring"@en ;
-   samm:characteristic :PinCharacteristic .
-
-:ResistanceMeasuremtnObject a samm:Entity ;
-   samm:extends :MeasurmentObject ;
-   samm:preferredName "Resistance Measurement Object"@en ;
-   samm:properties ( :resistanceMeasurement ) .
-
-:customID a samm:Property ;
-   samm:preferredName "Custom ID"@en ;
-   samm:description "Identification of the Pin as defined on the blueprint"@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "5" .
-
-:PinCharacteristic a samm:Characteristic ;
-   samm:preferredName "Pin Characeristic"@en ;
-   samm:description "Characteristic to describe a reference PIn"@en ;
-   samm:dataType :PinEntity .
-
-:position a samm:Property ;
-   samm:preferredName "PinPositon"@en ;
-   samm:description "Position of the pin according to the blue print"@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "01" .
-
-:value a samm:Property ;
-   samm:description "measured Value"@en ;
-   samm:characteristic :ValueCharacteristic .
-
 :measuredValue a samm:Property ;
    samm:preferredName "measured Value"@en ;
    samm:characteristic :MeasurementCharacteristic .
@@ -147,4 +132,13 @@
 :PinEntity a samm:Entity ;
    samm:preferredName "Pin Entity"@en ;
    samm:properties ( :customID :location :position ) .
+
+:referencePin a samm:Property ;
+   samm:description "Pin which is the other measuring point for the resistance measuring"@en ;
+   samm:characteristic :PinCharacteristic .
+
+:ResistanceMeasuremtnObject a samm:Entity ;
+   samm:extends :MeasurmentObject ;
+   samm:preferredName "Resistance Measurement Object"@en ;
+   samm:properties ( :resistanceMeasurement ) .
 
