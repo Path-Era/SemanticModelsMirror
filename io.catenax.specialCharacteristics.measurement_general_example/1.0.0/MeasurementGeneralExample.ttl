@@ -10,7 +10,7 @@
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_general_example:1.0.0#> .
 @prefix bpn: <urn:samm:io.catenax.shared.business_partner_number:2.0.0#> .
 
-:GeneralMeasurement a samm:Aspect ;
+:MeasurementGeneralExample a samm:Aspect ;
    samm:properties ( :measurementPin :referencePin :referenceValue :measuredValue :measurementTimestamp ) ;
    samm:operations ( ) ;
    samm:events ( ) .
