@@ -1,4 +1,5 @@
 
+
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
@@ -8,11 +9,34 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_qualitative:1.0.0#> .
 
-
 :QualitativeMeasurement a samm:Aspect ;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
    samm:description "Contains the Measurment for a special characteristic"@en ;
-   samm:properties ( ) ;
+   samm:properties ( :readQuality :extractedValue :measurementTimestamp ) ;
    samm:operations ( ) ;
    samm:events ( ) .
+
+:readQuality a samm:Property ;
+   samm:preferredName "Read Quality "@en ;
+   samm:description "Rating form 1-5 for the reading quality 5 best 1 worst"@en ;
+   samm:characteristic :ReadQualityCharacteristic .
+
+:extractedValue a samm:Property ;
+   samm:preferredName "Extracted Value"@en ;
+   samm:characteristic :ExtractedValueCharacteristic .
+
+:measurementTimestamp a samm:Property ;
+   samm:preferredName "Measurement Timestamp"@en ;
+   samm:characteristic :TimestampCharacteristic ;
+   samm:exampleValue "2024-10-01"^^xsd:date .
+
+:ReadQualityCharacteristic a samm-c:Enumeration ;
+   samm-c:values ( "5" "4" "3" "2" "1" ) .
+
+:ExtractedValueCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:TimestampCharacteristic a samm:Characteristic ;
+   samm:preferredName "Timestamp Characteristic"@en ;
+   samm:dataType xsd:date .
 
