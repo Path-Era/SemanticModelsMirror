@@ -10,7 +10,7 @@
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_functional:1.0.0#> .
 
 :FunctionalMeasurement a samm:Aspect ;
-   samm:properties ( :measurementTimestamp ) ;
+   samm:properties ( :measurementTimestamp :value ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -20,7 +20,14 @@
    samm:characteristic :MeasurementTimestamp ;
    samm:exampleValue "2024-10-01"^^xsd:date .
 
+:value a samm:Property ;
+   samm:preferredName "Measured Value"@en ;
+   samm:characteristic :ValueCharacteristic .
+
 :MeasurementTimestamp a samm:Characteristic ;
    samm:preferredName "MeasurementTimestamp"@en ;
    samm:dataType xsd:date .
+
+:ValueCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:boolean .
 
