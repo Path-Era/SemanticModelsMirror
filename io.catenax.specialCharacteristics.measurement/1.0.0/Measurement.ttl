@@ -84,12 +84,6 @@
    samm:preferredName "describe a value with an attached unit"@en ;
    samm:dataType :ValueSI .
 
-:x a samm:Property ;
-   samm:preferredName "x"@en ;
-   samm:description "x value  of the measured point"@en ;
-   samm:characteristic :CharacteristicPoint ;
-   samm:exampleValue "12.1"^^xsd:float .
-
 :FunctionalMeasurment a samm:Entity ;
    samm:extends :MeasurmentObject ;
    samm:properties ( :functionalValue ) .
@@ -100,11 +94,6 @@
 
 :ValueCharacteristic a samm:Characteristic ;
    samm:dataType xsd:float .
-
-:CharacteristicSpatial a samm:Characteristic ;
-   samm:preferredName "Spatial Measurement"@en ;
-   samm:description "Describes as Spatial Measurement"@en ;
-   samm:dataType :PointInSpace .
 
 :functionalValue a samm:Property ;
    samm:preferredName "Value"@en ;
@@ -129,11 +118,6 @@
    samm:description "encapsulate all relevant information to identify pins for this measurement"@en ;
    samm:properties ( :measurementPin :referencePin :referenceValue :measuredValue ) .
 
-:CharacteristicPoint a samm:Characteristic ;
-   samm:preferredName "CharacteristicPoint"@en ;
-   samm:description "descibing a point"@en ;
-   samm:dataType xsd:float .
-
 :referencePin a samm:Property ;
    samm:description "Pin which is the other measuring point for the resistance measuring"@en ;
    samm:characteristic :PinCharacteristic .
@@ -143,31 +127,16 @@
    samm:preferredName "Resistance Measurement Object"@en ;
    samm:properties ( :resistanceMeasurement ) .
 
-:SpatialMeasurment a samm:Entity ;
-   samm:extends :MeasurmentObject ;
-   samm:properties ( :spatialValue ) .
-
 :customID a samm:Property ;
    samm:preferredName "Custom ID"@en ;
    samm:description "Identification of the Pin as defined on the blueprint"@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "5" .
 
-:z a samm:Property ;
-   samm:preferredName "z"@en ;
-   samm:description "z value of the measured point"@en ;
-   samm:characteristic :CharacteristicPoint ;
-   samm:exampleValue "69"^^xsd:float .
-
 :PinCharacteristic a samm:Characteristic ;
    samm:preferredName "Pin Characeristic"@en ;
    samm:description "Characteristic to describe a reference PIn"@en ;
    samm:dataType :PinEntity .
-
-:PointInSpace a samm:Entity ;
-   samm:preferredName "PointinSpace"@en ;
-   samm:description "x,y,z coordinates of a measured point in space"@en ;
-   samm:properties ( :x :y :z ) .
 
 :position a samm:Property ;
    samm:preferredName "PinPositon"@en ;
@@ -178,12 +147,6 @@
 :value a samm:Property ;
    samm:description "measured Value"@en ;
    samm:characteristic :ValueCharacteristic .
-
-:y a samm:Property ;
-   samm:preferredName "y"@en ;
-   samm:description "y value of the measured point"@en ;
-   samm:characteristic :CharacteristicPoint ;
-   samm:exampleValue "420"^^xsd:float .
 
 :measuredValue a samm:Property ;
    samm:preferredName "measured Value"@en ;
@@ -197,9 +160,4 @@
 :PinEntity a samm:Entity ;
    samm:preferredName "Pin Entity"@en ;
    samm:properties ( :customID :location :position ) .
-
-:spatialValue a samm:Property ;
-   samm:preferredName "Value"@en ;
-   samm:description "measured point in space"@en ;
-   samm:characteristic :CharacteristicSpatial .
 
