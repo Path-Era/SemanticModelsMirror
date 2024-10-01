@@ -66,10 +66,6 @@
    samm:preferredName "Value of the reference measurement"@en ;
    samm:characteristic :MeasurementCharacteristic .
 
-:ResistanceCharacteristic a samm:Characteristic ;
-   samm:preferredName "Resistance Charactersitic"@en ;
-   samm:dataType :ResistanceMeasurementEntity .
-
 :ValueSI a samm:Entity ;
    samm:description "Value with an attached SI unit"@en ;
    samm:properties ( :value :unit ) .
@@ -124,11 +120,6 @@
    samm:preferredName "measured Value"@en ;
    samm:characteristic :MeasurementCharacteristic .
 
-:resistanceMeasurement a samm:Property ;
-   samm:preferredName "Resistance Measurement"@en ;
-   samm:description "This object represents a resistance measurement where each measurement is taken between two pins in given a predefined voltage."@en ;
-   samm:characteristic :ResistanceCharacteristic .
-
 :PinEntity a samm:Entity ;
    samm:preferredName "Pin Entity"@en ;
    samm:properties ( :customID :location :position ) .
@@ -136,9 +127,4 @@
 :referencePin a samm:Property ;
    samm:description "Pin which is the other measuring point for the resistance measuring"@en ;
    samm:characteristic :PinCharacteristic .
-
-:ResistanceMeasuremtnObject a samm:Entity ;
-   samm:extends :MeasurmentObject ;
-   samm:preferredName "Resistance Measurement Object"@en ;
-   samm:properties ( :resistanceMeasurement ) .
 
