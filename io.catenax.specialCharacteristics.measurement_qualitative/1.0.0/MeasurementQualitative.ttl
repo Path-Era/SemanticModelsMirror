@@ -31,7 +31,8 @@
    samm:exampleValue "2024-10-01"^^xsd:date .
 
 :ReadQualityCharacteristic a samm-c:Enumeration ;
-   samm-c:values ( "5" "4" "3" "2" "1" ) .
+   samm:dataType xsd:integer ;
+   samm-c:values ( 5 4 3 2 1 ) .
 
 :ExtractedValueCharacteristic a samm:Characteristic ;
    samm:dataType xsd:string .
