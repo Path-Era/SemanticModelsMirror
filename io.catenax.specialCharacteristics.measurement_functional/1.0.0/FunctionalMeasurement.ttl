@@ -8,7 +8,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.specialCharacteristics.measurement_functional:1.0.0#> .
 
-:functionalMeasurement a samm:aspect;
+:FunctionalMeasurement a samm:aspect;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
    samm:description "Contains the Measurment for a special characteristic"@en ;
    samm:properties (:test ) ;
