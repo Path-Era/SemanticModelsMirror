@@ -1,0 +1,18 @@
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.specialCharacteristics.specification:1.0.0#> .
+
+:specification a samm:Aspect ;
+   samm:preferredName "SpecialCharacteristicMeasurment"@en ;
+   samm:description "Contains the Measurment for a special characteristic"@en ;
+   samm:properties ( ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
