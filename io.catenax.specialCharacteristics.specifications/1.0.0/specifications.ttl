@@ -12,9 +12,13 @@
 :specification a samm:Aspect ;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
    samm:description "Contains the Measurment for a special characteristic"@en ;
-   samm:properties ( :measurementType :purpose :classification :revisionIndex :customerPartID :characteristicID ) ;
+   samm:properties ( :testLocation :measurementType :purpose :classification :revisionIndex :customerPartID :characteristicID ) ;
    samm:operations ( ) ;
    samm:events ( ) .
+
+:testLocation a samm:Property ;
+   samm:characteristic :TestLocationCharacteristic ;
+   samm:exampleValue "inHouse" .
 
 :measurementType a samm:Property ;
    samm:characteristic :MeasurementType ;
@@ -37,6 +41,10 @@
 
 :characteristicID a samm:Property ;
    samm:characteristic :String .
+
+:TestLocationCharacteristic a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "inHouse" "Production-Supplier" "Production-Sub-Supplier" ) .
 
 :MeasurementType a samm-c:Enumeration ;
    samm:dataType xsd:string ;
