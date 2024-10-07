@@ -12,7 +12,7 @@
 :specification a samm:Aspect ;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
    samm:description "Contains the Measurment for a special characteristic"@en ;
-   samm:properties ( :testLocation :measurementType :purpose :classification :revisionIndex :customerPartID :characteristicID ) ;
+   samm:properties ( :testLocation :measurementType :purpose :classification :revisionIndex :customerPartID :characteristicID :expectedMeasurement ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -42,6 +42,9 @@
 :characteristicID a samm:Property ;
    samm:characteristic :String .
 
+:expectedMeasurement a samm:Property ;
+   samm:characteristic :ExpectedMeasurementCharacteristic .
+
 :TestLocationCharacteristic a samm-c:Enumeration ;
    samm:dataType xsd:string ;
    samm-c:values ( "inHouse" "Production-Supplier" "Production-Sub-Supplier" ) .
@@ -63,4 +66,43 @@
 
 :String a samm:Characteristic ;
    samm:dataType xsd:string .
+
+:ExpectedMeasurementCharacteristic a samm-c:List ;
+   samm:dataType :ExpectedMeasurement .
+
+:ExpectedMeasurement a samm:Entity ;
+   samm:properties ( :targetValue :upperThreshold :lowerThreshold ) .
+
+:targetValue a samm:Property ;
+   samm:characteristic :ValueCharacteristic .
+
+:upperThreshold a samm:Property ;
+   samm:characteristic :Characteristic1 .
+
+:lowerThreshold a samm:Property ;
+   samm:characteristic :Characteristic2 .
+
+:ValueCharacteristic a samm:Characteristic ;
+   samm:dataType :ValueSI .
+
+:Characteristic1 a samm:Characteristic ;
+   samm:dataType :ValueSI .
+
+:Characteristic2 a samm:Characteristic ;
+   samm:dataType :ValueSI .
+
+:ValueSI a samm:Entity ;
+   samm:properties ( :value :unit ) .
+
+:value a samm:Property ;
+   samm:characteristic :ValueCharacteristics .
+
+:unit a samm:Property ;
+   samm:characteristic :UnitCharacteristic .
+
+:ValueCharacteristics a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:UnitCharacteristic a samm:Characteristic ;
+   samm:dataType samm:curie .
 
