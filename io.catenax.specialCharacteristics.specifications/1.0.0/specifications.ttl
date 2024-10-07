@@ -12,24 +12,35 @@
 :specification a samm:Aspect ;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
    samm:description "Contains the Measurment for a special characteristic"@en ;
-   samm:properties ( :purpose :classification :revisionIndex :customerPartID :characteristicID ) ;
+   samm:properties ( :measurementType :purpose :classification :revisionIndex :customerPartID :characteristicID ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
+:measurementType a samm:Property ;
+   samm:characteristic :MeasurementType ;
+   samm:exampleValue "qualitative" .
+
 :purpose a samm:Property ;
-   samm:characteristic :PurposeCharacteristics .
+   samm:characteristic :PurposeCharacteristics ;
+   samm:exampleValue "Traceability" .
 
 :classification a samm:Property ;
-   samm:characteristic :ClassificationCharacteristics .
+   samm:characteristic :ClassificationCharacteristics ;
+   samm:exampleValue "Safety" .
 
 :revisionIndex a samm:Property ;
-   samm:characteristic :ID .
+   samm:characteristic :ID ;
+   samm:exampleValue "1"^^xsd:positiveInteger .
 
 :customerPartID a samm:Property ;
    samm:characteristic :String .
 
 :characteristicID a samm:Property ;
    samm:characteristic :String .
+
+:MeasurementType a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "categorical" "ordinal" "attributive" "quantitative" "qualitative" ) .
 
 :PurposeCharacteristics a samm-c:Enumeration ;
    samm:dataType xsd:string ;
