@@ -1,0 +1,112 @@
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.ProductCarbonFootprint:1.0.0#> .
+@prefix ext-pcf: <urn:samm:io.catenax.pcf:7.0.0#> .
+@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+
+:ProductCarbonFootprint a samm:Aspect ;
+   samm:properties ( :carbonFootprintPerfomanceClass :stage4 :stage3 :stage2 :stage1 :linkToCertificate :productCarbonFootprintExcludingBiogenicStages :exemptedEmissionsDescription :exemptedEmissionsPercent :kilogramCarbonDioxideEquivalentPerKilowattHourOfTotalEnergyDelivered :declaredUnit :batteryCarbonFootprint ext-pcf:comment ext-pcf:companyIds ext-pcf:companyName ext-pcf:created ext-pcf:id ext-pcf:partialFullPcf ext-pcf:pcf ext-pcf:pcfLegalStatement ext-pcf:precedingPfIds ext-pcf:productCategoryCpc ext-pcf:productDescription ext-pcf:productIds ext-pcf:productNameCompany ext-pcf:specVersion ext-pcf:status ext-pcf:validityPeriodEnd ext-pcf:validityPeriodStart ext-pcf:version ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:carbonFootprintPerfomanceClass a samm:Property ;
+   samm:preferredName "carbonFootprintPerfomanceClass"@en ;
+   samm:description "Defines the carbon footprint performance class."@en ;
+   samm:characteristic samm-c:Text .
+
+:stage4 a samm:Property ;
+   samm:preferredName "Stage 4 - End-Of-Life and recycling"@en ;
+   samm:description "Collection, dismantling and recycling"@en ;
+   samm:see <https://thebatterypass.eu/assets/images/content-guidance/pdf/2023_Battery_Passport_Carbon_Footprint_Rules.pdf> ;
+   samm:characteristic :StageCharacteristic .
+
+:stage3 a samm:Property ;
+   samm:preferredName "Stage 3 - Distribution"@en ;
+   samm:description "Transport to the point of sale"@en ;
+   samm:see <https://thebatterypass.eu/assets/images/content-guidance/pdf/2023_Battery_Passport_Carbon_Footprint_Rules.pdf> ;
+   samm:characteristic :StageCharacteristic .
+
+:stage2 a samm:Property ;
+   samm:preferredName "Stage 2 - Main product production"@en ;
+   samm:description "Assembly of battery cells an assembly of batteries with the battery cells and the electric/electronic components"@en ;
+   samm:see <https://thebatterypass.eu/assets/images/content-guidance/pdf/2023_Battery_Passport_Carbon_Footprint_Rules.pdf> ;
+   samm:characteristic :StageCharacteristic .
+
+:stage1 a samm:Property ;
+   samm:preferredName "Stage 1 - Raw material acquisition and pre-processing"@en ;
+   samm:description "Includes mining and other relevant sourcing, pre-processing and transport of active materials, up to the manufacturing of battery cells and battery components (active materials, separator, electrolyte, casings, active and passive battery components), and electric/electronic components"@en ;
+   samm:see <https://thebatterypass.eu/assets/images/content-guidance/pdf/2023_Battery_Passport_Carbon_Footprint_Rules.pdf> ;
+   samm:characteristic :StageCharacteristic .
+
+:linkToCertificate a samm:Property ;
+   samm:preferredName "linkToCertificate"@en ;
+   samm:description "Defines the link to the certificate"@en ;
+   samm:characteristic samm-c:ResourcePath .
+
+:productCarbonFootprintExcludingBiogenicStages a samm:Property ;
+   samm:preferredName "productCarbonFootprintExcludingBiogenicStages"@en ;
+   samm:description "Defines the product carbon footprint excluding biogenic stages measured as CO₂e."@en ;
+   samm:characteristic :UnitReference ;
+   samm:exampleValue "25.0"^^xsd:float .
+
+:exemptedEmissionsDescription a samm:Property ;
+   samm:preferredName "exemptedEmissionsDescription"@en ;
+   samm:description "Describes the exempted emission measured as CO₂e."@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "24.0" .
+
+:exemptedEmissionsPercent a samm:Property ;
+   samm:preferredName "exemptedEmissionsPercent"@en ;
+   samm:description "Defines the exempted emission percent measured as CO₂e."@en ;
+   samm:characteristic :ExemptedEmissionsPercentTrait .
+
+:kilogramCarbonDioxideEquivalentPerKilowattHourOfTotalEnergyDelivered a samm:Property ;
+   samm:preferredName "kilogramCarbonDioxideEquivalentPerKilowattHourOfTotalEnergyDelivered"@en ;
+   samm:description "Defines the kilogram carbon dioxide equivalent per kilowatt hour of total energy delivered as CO₂e per kWh."@en ;
+   samm:characteristic :UnitReference ;
+   samm:exampleValue "26.0"^^xsd:float .
+
+:declaredUnit a samm:Property ;
+   samm:preferredName "declaredUnit"@en ;
+   samm:description "Defines the declared unit with various types and values depending on the target value. "@en ;
+   samm:characteristic :DeclaredUnit ;
+   samm:exampleValue "15" .
+
+:batteryCarbonFootprint a samm:Property ;
+   samm:preferredName "batteryCarbonFootprint"@en ;
+   samm:description "Defines the battery carbon footprint measured as CO_2/kWh"@en ;
+   samm:characteristic :UnitReference ;
+   samm:exampleValue "25.0"^^xsd:float .
+
+:StageCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:UnitReference a samm:Characteristic ;
+   samm:preferredName "Unit Reference"@en ;
+   samm:dataType xsd:float .
+
+:ExemptedEmissionsPercentTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Characteristic1 ;
+   samm-c:constraint :PercentageConstraint .
+
+:DeclaredUnit a samm:Characteristic ;
+   samm:preferredName "Declared unit "@en ;
+   samm:description "Describes the declared unit."@en ;
+   samm:dataType xsd:string .
+
+:Characteristic1 a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "100"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
