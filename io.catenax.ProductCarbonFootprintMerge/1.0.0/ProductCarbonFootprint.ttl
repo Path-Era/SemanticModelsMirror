@@ -25,17 +25,11 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :declaredUnit :stagePercentages ) .
+   samm:properties ( :absPCFValue :stagePercentages ) .
 
 :absPCFValue a samm:Property ;
    samm:characteristic :AbsPCFValueTrait ;
    samm:exampleValue "750"^^xsd:float .
-
-:declaredUnit a samm:Property ;
-   samm:preferredName "declaredUnit"@en ;
-   samm:description "Defines the declared unit with various types and values depending on the target value. "@en ;
-   samm:characteristic :DeclaredUnit ;
-   samm:exampleValue "C02kg/piece" .
 
 :stagePercentages a samm:Property ;
    samm:description "The sum of all entries must sum to 1 !"@en ;
@@ -44,12 +38,6 @@
 :AbsPCFValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicAbsValue ;
    samm-c:constraint :Constraint1 .
-
-:DeclaredUnit a samm-c:Enumeration ;
-   samm:preferredName "Declared unit "@en ;
-   samm:description "Describes the declared unit."@en ;
-   samm:dataType xsd:string ;
-   samm-c:values ( "C02kg/kg" "C02kg/piece" ) .
 
 :CharacteristicStagePercentages a samm:Characteristic ;
    samm:dataType :EntityStagePercentage .
