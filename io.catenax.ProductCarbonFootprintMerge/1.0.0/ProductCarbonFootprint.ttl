@@ -51,7 +51,7 @@
    samm-c:upperBoundDefinition samm-c:LESS_THAN .
 
 :EntityStagePercentage a samm:Entity ;
-   samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLiefRecycling ) .
+   samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
 
 :stage1RawMaterialPreProcessing a samm:Property ;
    samm:preferredName "Raw material acquisition and pre-processing"@en ;
@@ -69,7 +69,7 @@
    samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
    samm:exampleValue "0"^^xsd:float .
 
-:stage4EndOfLiefRecycling a samm:Property ;
+:stage4EndOfLifeRecycling a samm:Property ;
    samm:preferredName "End-Of-Life and recycling"@en ;
    samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
    samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
