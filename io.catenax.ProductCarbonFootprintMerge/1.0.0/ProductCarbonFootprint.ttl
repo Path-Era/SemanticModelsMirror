@@ -38,6 +38,7 @@
    samm:exampleValue "C02kg/piece" .
 
 :stagePercentages a samm:Property ;
+   samm:description "The sum of all entries must sum to 1 !"@en ;
    samm:characteristic :CharacteristicStagePercentages .
 
 :AbsPCFValueTrait a samm-c:Trait ;
@@ -71,15 +72,20 @@
 
 :stage2MainProductProduction a samm:Property ;
    samm:preferredName "Main product production"@en ;
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
    samm:characteristic :Stage1RawMaterialPreProcessingTrait .
 
 :stage3Distribution a samm:Property ;
    samm:preferredName "Stage Distribution"@en ;
-   samm:characteristic :Stage1RawMaterialPreProcessingTrait .
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
+   samm:exampleValue "0"^^xsd:float .
 
 :stage4EndOfLiefRecycling a samm:Property ;
    samm:preferredName "End-Of-Life and recycling"@en ;
-   samm:characteristic :Stage1RawMaterialPreProcessingTrait .
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
+   samm:exampleValue "0"^^xsd:float .
 
 :Stage1RawMaterialPreProcessingTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicStage ;
