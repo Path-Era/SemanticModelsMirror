@@ -25,7 +25,7 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :stagePercentages ) .
+   samm:properties ( :absPCFValue :stagePercentages :rawData ) .
 
 :absPCFValue a samm:Property ;
    samm:characteristic :AbsPCFValueTrait ;
@@ -35,12 +35,19 @@
    samm:description "The sum of all entries must sum to 1 !"@en ;
    samm:characteristic :CharacteristicStagePercentages .
 
+:rawData a samm:Property ;
+   samm:description "This is an optional section which should contain data which can be used to calculate the pcf. "@en ;
+   samm:characteristic :CharacteristicRawData .
+
 :AbsPCFValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicAbsValue ;
    samm-c:constraint :Constraint1 .
 
 :CharacteristicStagePercentages a samm:Characteristic ;
    samm:dataType :EntityStagePercentage .
+
+:CharacteristicRawData a samm-c:List ;
+   samm:dataType :RawDataEntry .
 
 :CharacteristicAbsValue a samm:Characteristic ;
    samm:dataType xsd:float .
@@ -52,6 +59,9 @@
 
 :EntityStagePercentage a samm:Entity ;
    samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
+
+:RawDataEntry a samm:Entity ;
+   samm:properties ( :description :id :data ) .
 
 :stage1RawMaterialPreProcessing a samm:Property ;
    samm:preferredName "Raw material acquisition and pre-processing"@en ;
@@ -75,9 +85,23 @@
    samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
    samm:exampleValue "0"^^xsd:float .
 
+:description a samm:Property ;
+   samm:description "This field contains the description of the contained data. Use this field to provide information on the data provided in this section"@en ;
+   samm:characteristic samm-c:Text .
+
+:id a samm:Property ;
+   samm:description "Identifier for this data. Use this data to reference this entry"@en ;
+   samm:characteristic samm-c:Text .
+
+:data a samm:Property ;
+   samm:characteristic :CharacteristicData .
+
 :Stage1RawMaterialPreProcessingTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicStage ;
    samm-c:constraint :Constraint2 .
+
+:CharacteristicData a samm-c:List ;
+   samm:dataType :DataEntry .
 
 :CharacteristicStage a samm:Characteristic ;
    samm:dataType xsd:float .
@@ -88,4 +112,16 @@
    samm-c:maxValue "1"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:DataEntry a samm:Entity ;
+   samm:properties ( :key :value ) .
+
+:key a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:value a samm:Property ;
+   samm:characteristic :CharacteristicValue .
+
+:CharacteristicValue a samm:Characteristic ;
+   samm:dataType xsd:float .
 
