@@ -1,0 +1,59 @@
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.specialCharacteristics.notification:1.0.0#> .
+@prefix bpn: <urn:samm:io.catenax.shared.business_partner_number:2.0.0#> .
+@prefix serialPart: <urn:samm:io.catenax.serial_part:3.0.0#> .
+
+:Notification a samm:Aspect ;
+   samm:preferredName "SpecialCharacteristicMeasurment"@en ;
+   samm:description "Contains the Measurment for a special characteristic"@en ;
+   samm:properties ( serialPart:localIdentifiers bpn:bpnlProperty :customerPartID :characteristicID :requestPeriod ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:customerPartID a samm:Property ;
+   samm:preferredName "customerPartID"@en ;
+   samm:description "This number is the identification of the Part"@en ;
+   samm:characteristic :CharacteristicCustomerPartID ;
+   samm:exampleValue "BPN0000000" .
+
+:characteristicID a samm:Property ;
+   samm:preferredName "characteristicID"@en ;
+   samm:description "Identification of the special characteristic in in relation of the specified part"@en ;
+   samm:characteristic :CharacteristicCustomerPartID ;
+   samm:exampleValue "S1" .
+
+:requestPeriod a samm:Property ;
+   samm:preferredName "Request Period"@en ;
+   samm:description "Define the Period of the requested timeframe"@en ;
+   samm:characteristic :CharacteristicRequestPeriod .
+
+:CharacteristicCustomerPartID a samm:Characteristic ;
+   samm:preferredName "customerPartID_characteristic"@en ;
+   samm:dataType xsd:string .
+
+:CharacteristicRequestPeriod a samm:Characteristic ;
+   samm:dataType :EntityRequestPeriod .
+
+:EntityRequestPeriod a samm:Entity ;
+   samm:properties ( :from :to ) .
+
+:from a samm:Property ;
+   samm:preferredName "From"@en ;
+   samm:description "Start of the time frame"@en ;
+   samm:characteristic samm-c:Timestamp ;
+   samm:exampleValue "2024-08-12"^^xsd:dateTime .
+
+:to a samm:Property ;
+   samm:preferredName "To"@en ;
+   samm:description "End of the requested timeframe"@en ;
+   samm:characteristic samm-c:Timestamp ;
+   samm:exampleValue "2024-08-29"^^xsd:dateTime .
+
