@@ -114,13 +114,13 @@
    samm-c:baseCharacteristic :CASCharacteristics ;
    samm-c:constraint :CASREGEX .
 
-:CharacteristicAnode a samm-c:List ;
+:CharacteristicAnode a samm:Characteristic ;
    samm:dataType :ComponentComposition .
 
-:CharacteristicCathode a samm-c:List ;
+:CharacteristicCathode a samm:Characteristic ;
    samm:dataType :ComponentComposition .
 
-:CharacteristicElectrolyte a samm-c:List ;
+:CharacteristicElectrolyte a samm:Characteristic ;
    samm:dataType :ComponentComposition .
 
 :MassPercentageTrait a samm-c:Trait ;
