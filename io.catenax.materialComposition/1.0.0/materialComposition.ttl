@@ -13,14 +13,14 @@
 :MaterialComposition a samm:Aspect ;
    samm:preferredName "Material master data"@en ;
    samm:description "Describes the material master data. "@en ;
-   samm:properties ( :materials :batteryChemistry :partTraceabilityFlagBTRV :alternativePartFor :sparePartFlag :dangerousGoodsFlag :releaseStatus :partNumber :criticalComponents ) ;
+   samm:properties ( :criticalRawMaterials :batteryChemistry :criticalComponents :hazardousMaterials ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
-:materials a samm:Property ;
-   samm:preferredName "Name of the cathode, anode, electrolyte materials"@en ;
-   samm:description "This attribute contains a list with all critical raw materials which have a mass percentage above 0.1% and material used for anode, cathode and electrolyte."@en ;
-   samm:characteristic :Name .
+:criticalRawMaterials a samm:Property ;
+   samm:preferredName "List of Critical Raw Materials"@en ;
+   samm:description "This list contains a representation of all critical raw materials used within the related product"@en ;
+   samm:characteristic :CriciticalRawMaterialListCharacteristic .
 
 :batteryChemistry a samm:Property ;
    samm:preferredName "Battery chemistry"@en ;
@@ -28,130 +28,52 @@
    samm:characteristic samm-c:Text ;
    samm:exampleValue "Litium-Ion" .
 
-:partTraceabilityFlagBTRV a samm:Property ;
-   samm:preferredName "Part traceability flag BTRV"@en ;
-   samm:description "Describes the part traceability flag BTRV."@en ;
-   samm:characteristic samm-c:Boolean ;
-   samm:exampleValue false .
-
-:alternativePartFor a samm:Property ;
-   samm:preferredName "Alternative part for"@en ;
-   samm:description "Defines the alternative part for."@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "61219321814" .
-
-:sparePartFlag a samm:Property ;
-   samm:preferredName "Spare part flag"@en ;
-   samm:description "Defines the spare part flag. "@en ;
-   samm:characteristic samm-c:Boolean ;
-   samm:exampleValue true .
-
-:dangerousGoodsFlag a samm:Property ;
-   samm:preferredName "Dangerous goods flag"@en ;
-   samm:description "Defines the dangerous goods flag."@en ;
-   samm:characteristic samm-c:Boolean ;
-   samm:exampleValue false .
-
-:releaseStatus a samm:Property ;
-   samm:preferredName "Release status"@en ;
-   samm:description "Describes the release status. "@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "Released" .
-
-:partNumber a samm:Property ;
-   samm:preferredName "Partnumber"@en ;
-   samm:description "Describes the partnumber. "@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "61219321815" .
-
 :criticalComponents a samm:Property ;
    samm:preferredName "Critical Components"@en ;
    samm:description "This attribute contains the information which material is used for the anode, cathode and electrolyte"@en ;
    samm:characteristic :CricitalComponentsCharacteristic1 .
 
-:Name a samm-c:List ;
-   samm:preferredName "Name of the cathode, anode, electrolyte materials characteristic"@en ;
-   samm:description "Describes the name of the cathode, anode, electrolyte materials characteristic."@en ;
+:hazardousMaterials a samm:Property ;
+   samm:preferredName "Hazardous Materials"@en ;
+   samm:description "This list contains all Hazardous Materials contained in this product"@en ;
+   samm:characteristic :CharacteristicHazardousMaterialsList .
+
+:CriciticalRawMaterialListCharacteristic a samm-c:List ;
+   samm:preferredName "CricticalRawMaterilaList"@en ;
+   samm:description "This List contains the CAS-Numbers of all Critical Raw Materials contained in this product"@en ;
    samm:dataType :Material .
 
 :CricitalComponentsCharacteristic1 a samm:Characteristic ;
    samm:dataType :CriticalComponents .
 
+:CharacteristicHazardousMaterialsList a samm-c:List ;
+   samm:dataType :EntityHazardInformation .
+
 :Material a samm:Entity ;
    samm:description "Material Description of the Anode Cathode an Electrolyte"@en ;
-   samm:properties ( :massPercentage :materialName :casNumber :hazardInformation ) .
+   samm:properties ( :casNumber ) .
 
 :CriticalComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
 
-:massPercentage a samm:Property ;
-   samm:preferredName "Mass Fraction of used Material"@en ;
-   samm:description "Specifying the mass fraction in % of the material mandatory if material is used for anode, cathode or electolyte"@en ;
-   samm:characteristic :MassPercentageTrait .
-
-:materialName a samm:Property ;
-   samm:preferredName "Material Name"@en ;
-   samm:description "Common Name of the Material"@en ;
-   samm:characteristic :MaterialCommonName ;
-   samm:exampleValue "Copper" .
+:EntityHazardInformation a samm:Entity ;
+   samm:properties ( :hazardousFlag :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :casNumber :clpIndex ) .
 
 :casNumber a samm:Property ;
    samm:characteristic :CathodeTrait ;
-   samm:exampleValue "7440-50-8" .
-
-:hazardInformation a samm:Property ;
-   samm:preferredName "Information on hazardous"@en ;
-   samm:description "This property contains hazard Information on the related material"@en ;
-   samm:characteristic :CharacteristicHazard .
+   samm:exampleValue "1234-321-2" .
 
 :anode a samm:Property ;
-   samm:description "contains the CAS number of the material used for the anode"@en ;
-   samm:characteristic :CathodeTrait ;
-   samm:exampleValue "7440-48-4" .
+   samm:description "contains the CAS numbers and mass percentages of the material used for the anode. Sum of all entries in this list equals 100"@en ;
+   samm:characteristic :CharacteristicAnode .
 
 :cathode a samm:Property ;
-   samm:description "contains the CAS number of the material used for the cathode"@en ;
-   samm:characteristic :CathodeTrait ;
-   samm:exampleValue "7439-93-2" .
+   samm:description "contains the CAS numbers and mass percentages of the materials used for the cathode. Sum of all entries in this list equals 100"@en ;
+   samm:characteristic :CharacteristicCathode .
 
 :electrolyte a samm:Property ;
-   samm:description "contains the CAS number of the material used for the electrolyte"@en ;
-   samm:characteristic :CathodeTrait ;
-   samm:exampleValue "12069-69-1" .
-
-:MassPercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :MassPercentage ;
-   samm-c:constraint :PercentageConstraint .
-
-:MaterialCommonName a samm:Characteristic ;
-   samm:dataType xsd:string .
-
-:CathodeTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CASCharacteristics ;
-   samm-c:constraint :CASREGEX .
-
-:CharacteristicHazard a samm:Characteristic ;
-   samm:dataType :EntityHazardInformation .
-
-:MassPercentage a samm:Characteristic ;
-   samm:description "Percentage of related Material "@en ;
-   samm:dataType xsd:integer .
-
-:PercentageConstraint a samm-c:RangeConstraint ;
-   samm-c:minValue 0 ;
-   samm-c:maxValue 100 ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
-
-:CASCharacteristics a samm:Characteristic ;
-   samm:description "Characteristic to model CAS Numbers de.wikipedia.org/wiki/CAS-Nummer"@en ;
-   samm:dataType xsd:string .
-
-:CASREGEX a samm-c:RegularExpressionConstraint ;
-   samm:value "[0 - 9]{2-7}-[0-9]{3}-[0-9]{2}" .
-
-:EntityHazardInformation a samm:Entity ;
-   samm:properties ( :hazardousFlag :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :hazardMaterialConcentrationRange :enviromentalImpact ) .
+   samm:description "contains the CAS numbers and mass percentages of the material used for the electrolyte. Sum of all entries in this list equals 100"@en ;
+   samm:characteristic :CharacteristicElectrolyte .
 
 :hazardousFlag a samm:Property ;
    samm:preferredName "Hazardous Substance"@en ;
@@ -174,12 +96,59 @@
    samm:description "Description where the hazardous substances are located within this product"@en ;
    samm:characteristic samm-c:Text .
 
-:hazardMaterialConcentrationRange a samm:Property ;
-   samm:preferredName "Hazard Material Concentration Range"@en ;
-   samm:description "Concentration Range of the hazardous materials contained in this product"@en ;
-   samm:characteristic :MassPercentageTrait .
-
 :enviromentalImpact a samm:Property ;
    samm:preferredName "Impact of substances on the enviroment, human health, safety"@en ;
    samm:characteristic samm-c:Text .
+
+:clpIndex a samm:Property ;
+   samm:preferredName "CLP Index"@en ;
+   samm:description "This contains the CLP Index for the related material"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "abrasive" .
+
+:CathodeTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CASCharacteristics ;
+   samm-c:constraint :CASREGEX .
+
+:CharacteristicAnode a samm-c:List ;
+   samm:dataType :ComponentMaterial .
+
+:CharacteristicCathode a samm-c:List ;
+   samm:dataType :ComponentMaterial .
+
+:CharacteristicElectrolyte a samm-c:List ;
+   samm:dataType :ComponentMaterial .
+
+:CASCharacteristics a samm:Characteristic ;
+   samm:description "Characteristic to model CAS Numbers de.wikipedia.org/wiki/CAS-Nummer"@en ;
+   samm:dataType xsd:string .
+
+:CASREGEX a samm-c:RegularExpressionConstraint ;
+   samm:value "[0 - 9]{2-7}-[0-9]{3}-[0-9]{2}" .
+
+:ComponentMaterial a samm:Entity ;
+   samm:properties ( :casNumber :massPercentage ) .
+
+:massPercentage a samm:Property ;
+   samm:preferredName "Mass Percentage"@en ;
+   samm:description "contains the Mass percentage of this material of the Anode, Cathode or Electrolyte "@en ;
+   samm:characteristic :MassPercentageTrait ;
+   samm:exampleValue 10 .
+
+:MassPercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :MassPercentage ;
+   samm-c:constraint :PercentageConstraint .
+
+:MassPercentage a samm:Characteristic ;
+   samm:description "Percentage of related Material "@en ;
+   samm:dataType xsd:integer .
+
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue 0 ;
+   samm-c:maxValue 100 ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:CharacteristicHazard a samm:Characteristic ;
+   samm:dataType :EntityHazardInformation .
 
