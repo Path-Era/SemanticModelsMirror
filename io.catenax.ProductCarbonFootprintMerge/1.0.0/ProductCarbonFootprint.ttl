@@ -25,7 +25,7 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :stagePercentages :rawData ) .
+   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass ) .
 
 :absPCFValue a samm:Property ;
    samm:characteristic :AbsPCFValueTrait ;
@@ -38,6 +38,11 @@
 :rawData a samm:Property ;
    samm:description "This is an optional section which should contain data which can be used to calculate the pcf. "@en ;
    samm:characteristic :CharacteristicRawData .
+
+:pcfPerformanceClass a samm:Property ;
+   samm:preferredName "PCF Performance Class"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "B+" .
 
 :AbsPCFValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicAbsValue ;
