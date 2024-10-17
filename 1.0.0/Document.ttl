@@ -1,0 +1,62 @@
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.shared.Document:1.0.0#> .
+@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+
+:Document a samm:Aspect ;
+   samm:preferredName "Document"@en ;
+   samm:description "Describes the reference to the document."@en ;
+   samm:properties ( :creationdate :documentPath :name :description ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:creationdate a samm:Property ;
+   samm:preferredName "Creationdate"@en ;
+   samm:description "Defines the creationdate."@en ;
+   samm:characteristic :CreationdateCharacteristic ;
+   samm:exampleValue "1726573134"^^xsd:dateTime .
+
+:documentPath a samm:Property ;
+   samm:preferredName "Document Path"@en ;
+   samm:description "Path to the document"@en ;
+   samm:characteristic :UniformResourceLocatorCharacteristic ;
+   samm:exampleValue "https://example.com/yourdocument.pdf"^^xsd:anyURI .
+
+:name a samm:Property ;
+   samm:preferredName "Name"@en ;
+   samm:description "Defines name of the document."@en ;
+   samm:characteristic :NameCharacteristic ;
+   samm:exampleValue "YourOwnDocument.pdf" .
+
+:description a samm:Property ;
+   samm:preferredName "description"@en ;
+   samm:description "Provides a description of the relevant document"@en ;
+   samm:exampleValue  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. " ;
+   samm:characteristic :CharacteristicDescription .
+
+:CreationdateCharacteristic a samm:Characteristic ;
+   samm:preferredName "Creationdate Characteristic"@en ;
+   samm:description "Describes the characteristic of the creationdate."@en ;
+   samm:dataType xsd:dateTime .
+
+:UniformResourceLocatorCharacteristic a samm:Characteristic ;
+   samm:preferredName "Uniform resource locator characteristic"@en ;
+   samm:description "Describes the uniform resource locator characteristic."@en ;
+   samm:dataType xsd:anyURI .
+
+:NameCharacteristic a samm:Characteristic ;
+   samm:preferredName "Name characteristic"@en ;
+   samm:description "Describes the characteristic of the name."@en ;
+   samm:dataType xsd:string .
+
+:CharacteristicDescription a samm:Characteristic ;
+   samm:preferredName "CharateristicDescription"@en ;
+   samm:dataType xsd:string .
+
