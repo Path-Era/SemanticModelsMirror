@@ -27,7 +27,7 @@
 
 :DocumentEntry a samm:Entity ;
    samm:description "Entry of the document list"@en ;
-   samm:properties ( :description :name :documentPath :creationdate ) .
+   samm:properties ( :description :name :documentPath :creationdate :documentTypes ) .
 
 :description a samm:Property ;
    samm:preferredName "description"@en ;
@@ -53,6 +53,10 @@
    samm:characteristic :CreationdateCharacteristic ;
    samm:exampleValue "1726573134"^^xsd:dateTime .
 
+:documentTypes a samm:Property ;
+   samm:characteristic :CharacteristicDocType ;
+   samm:exampleValue "Extinguishing Agent" .
+
 :CharacteristicDescription a samm:Characteristic ;
    samm:preferredName "CharateristicDescription"@en ;
    samm:dataType xsd:string .
@@ -71,4 +75,8 @@
    samm:preferredName "Creationdate Characteristic"@en ;
    samm:description "Describes the characteristic of the creationdate."@en ;
    samm:dataType xsd:dateTime .
+
+:CharacteristicDocType a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "ManualRemovalOfTheBatteryFromAppliance" "ManualDissasemblyDismantlingBatteryPack" "ExtinguishingAgent" "SafetyMeasruementsInstructions" "EU-DeclarationOfConformity" "EU-DeclarationCOnformityID" "ResultsTestReports" "SeparateCollectionSymbol" "MeaningLablesSymbols" "CadmiumLeadSymboly" "InformationOnDueDiligenceReport" "ThirdPartySupplyChainAssurances" "EU-TaxonomyDisclosureStatement" "SustainabiliyReport" ) .
 
