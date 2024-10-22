@@ -25,7 +25,7 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy :declaredUnit ) .
+   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy ) .
 
 :absPCFValue a samm:Property ;
    samm:characteristic :CharacteristicAbsPcfValue .
@@ -48,11 +48,6 @@
    samm:characteristic samm-c:ResourcePath ;
    samm:exampleValue "https://www.example.com/study.pdf"^^xsd:anyURI .
 
-:declaredUnit a samm:Property ;
-   samm:preferredName "Declared Unit"@en ;
-   samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
-   samm:characteristic :CharacteristicDeclaredUnit .
-
 :CharacteristicAbsPcfValue a samm:Characteristic ;
    samm:dataType :EntityAbsPcfValue .
 
@@ -61,10 +56,6 @@
 
 :CharacteristicRawData a samm-c:List ;
    samm:dataType :RawDataEntry .
-
-:CharacteristicDeclaredUnit a samm-c:Enumeration ;
-   samm:dataType xsd:string ;
-   samm-c:values ( "C02KG/KG" "C02KG/piece" ) .
 
 :EntityAbsPcfValue a samm:Entity ;
    samm:properties ( :valuePcf :declaredUnit ) .
@@ -78,6 +69,11 @@
 :valuePcf a samm:Property ;
    samm:characteristic :AbsPCFValueTrait ;
    samm:exampleValue "420.69"^^xsd:float .
+
+:declaredUnit a samm:Property ;
+   samm:preferredName "Declared Unit"@en ;
+   samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
+   samm:characteristic :CharacteristicDeclaredUnit .
 
 :stage1RawMaterialPreProcessing a samm:Property ;
    samm:preferredName "Raw material acquisition and pre-processing"@en ;
@@ -115,6 +111,10 @@
 :AbsPCFValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicAbsValue ;
    samm-c:constraint :Constraint1 .
+
+:CharacteristicDeclaredUnit a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "C02KG/KG" "C02KG/piece" ) .
 
 :Stage1RawMaterialPreProcessingTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicStage ;
