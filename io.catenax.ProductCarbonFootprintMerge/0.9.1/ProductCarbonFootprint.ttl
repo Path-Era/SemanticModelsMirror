@@ -12,7 +12,7 @@
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :ProductCarbonFootprint a samm:Aspect ;
-   samm:properties ( ext-pcf:comment ext-pcf:companyIds ext-pcf:companyName ext-pcf:created ext-pcf:id ext-pcf:partialFullPcf ext-pcf:pcf ext-pcf:pcfLegalStatement ext-pcf:precedingPfIds ext-pcf:productCategoryCpc ext-pcf:productDescription ext-pcf:productIds ext-pcf:productNameCompany ext-pcf:specVersion ext-pcf:status ext-pcf:validityPeriodEnd ext-pcf:validityPeriodStart ext-pcf:version :cxPCFValues ) ;
+   samm:properties ( :cxPCFValues ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -25,11 +25,10 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy ) .
+   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy :declaredUnit ) .
 
 :absPCFValue a samm:Property ;
-   samm:characteristic :AbsPCFValueTrait ;
-   samm:exampleValue "750"^^xsd:float .
+   samm:characteristic :CharacteristicAbsPcfValue .
 
 :stagePercentages a samm:Property ;
    samm:description "The sum of all entries must sum to 1 !"@en ;
@@ -49,9 +48,13 @@
    samm:characteristic samm-c:ResourcePath ;
    samm:exampleValue "https://www.example.com/study.pdf"^^xsd:anyURI .
 
-:AbsPCFValueTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CharacteristicAbsValue ;
-   samm-c:constraint :Constraint1 .
+:declaredUnit a samm:Property ;
+   samm:preferredName "Declared Unit"@en ;
+   samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
+   samm:characteristic :CharacteristicDeclaredUnit .
+
+:CharacteristicAbsPcfValue a samm:Characteristic ;
+   samm:dataType :EntityAbsPcfValue .
 
 :CharacteristicStagePercentages a samm:Characteristic ;
    samm:dataType :EntityStagePercentage .
@@ -59,19 +62,22 @@
 :CharacteristicRawData a samm-c:List ;
    samm:dataType :RawDataEntry .
 
-:CharacteristicAbsValue a samm:Characteristic ;
-   samm:dataType xsd:float .
+:CharacteristicDeclaredUnit a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "C02KG/KG" "C02KG/piece" ) .
 
-:Constraint1 a samm-c:RangeConstraint ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:GREATER_THAN ;
-   samm-c:upperBoundDefinition samm-c:LESS_THAN .
+:EntityAbsPcfValue a samm:Entity ;
+   samm:properties ( :valuePcf :declaredUnit ) .
 
 :EntityStagePercentage a samm:Entity ;
    samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
 
 :RawDataEntry a samm:Entity ;
    samm:properties ( :description :id :data ) .
+
+:valuePcf a samm:Property ;
+   samm:characteristic :AbsPCFValueTrait ;
+   samm:exampleValue "420.69"^^xsd:float .
 
 :stage1RawMaterialPreProcessing a samm:Property ;
    samm:preferredName "Raw material acquisition and pre-processing"@en ;
@@ -106,12 +112,24 @@
 :data a samm:Property ;
    samm:characteristic :CharacteristicData .
 
+:AbsPCFValueTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicAbsValue ;
+   samm-c:constraint :Constraint1 .
+
 :Stage1RawMaterialPreProcessingTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicStage ;
    samm-c:constraint :Constraint2 .
 
 :CharacteristicData a samm-c:List ;
    samm:dataType :DataEntry .
+
+:CharacteristicAbsValue a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:Constraint1 a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:GREATER_THAN ;
+   samm-c:upperBoundDefinition samm-c:LESS_THAN .
 
 :CharacteristicStage a samm:Characteristic ;
    samm:dataType xsd:float .
