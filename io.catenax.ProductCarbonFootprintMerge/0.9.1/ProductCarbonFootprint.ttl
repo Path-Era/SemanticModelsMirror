@@ -1,0 +1,137 @@
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.ProductCarbonFootprint:0.9.1#> .
+@prefix ext-pcf: <urn:samm:io.catenax.pcf:7.0.0#> .
+@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+
+:ProductCarbonFootprint a samm:Aspect ;
+   samm:properties ( ext-pcf:comment ext-pcf:companyIds ext-pcf:companyName ext-pcf:created ext-pcf:id ext-pcf:partialFullPcf ext-pcf:pcf ext-pcf:pcfLegalStatement ext-pcf:precedingPfIds ext-pcf:productCategoryCpc ext-pcf:productDescription ext-pcf:productIds ext-pcf:productNameCompany ext-pcf:specVersion ext-pcf:status ext-pcf:validityPeriodEnd ext-pcf:validityPeriodStart ext-pcf:version :cxPCFValues ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:cxPCFValues a samm:Property ;
+   samm:preferredName "Catena-X PCF Values"@en ;
+   samm:description "This attribute contains the values to calculated the PCF values "@en ;
+   samm:characteristic :CharacteristicPCFValues .
+
+:CharacteristicPCFValues a samm:Characteristic ;
+   samm:dataType :EntityPCF .
+
+:EntityPCF a samm:Entity ;
+   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy ) .
+
+:absPCFValue a samm:Property ;
+   samm:characteristic :AbsPCFValueTrait ;
+   samm:exampleValue "750"^^xsd:float .
+
+:stagePercentages a samm:Property ;
+   samm:description "The sum of all entries must sum to 1 !"@en ;
+   samm:characteristic :CharacteristicStagePercentages .
+
+:rawData a samm:Property ;
+   samm:description "This is an optional section which should contain data which can be used to calculate the pcf. "@en ;
+   samm:characteristic :CharacteristicRawData .
+
+:pcfPerformanceClass a samm:Property ;
+   samm:preferredName "PCF Performance Class"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "B+" .
+
+:webLinkToCarbonFootPrintStudy a samm:Property ;
+   samm:preferredName "Link to CarbonFootPrintStudy"@en ;
+   samm:characteristic samm-c:ResourcePath ;
+   samm:exampleValue "https://www.example.com/study.pdf"^^xsd:anyURI .
+
+:AbsPCFValueTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicAbsValue ;
+   samm-c:constraint :Constraint1 .
+
+:CharacteristicStagePercentages a samm:Characteristic ;
+   samm:dataType :EntityStagePercentage .
+
+:CharacteristicRawData a samm-c:List ;
+   samm:dataType :RawDataEntry .
+
+:CharacteristicAbsValue a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:Constraint1 a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:GREATER_THAN ;
+   samm-c:upperBoundDefinition samm-c:LESS_THAN .
+
+:EntityStagePercentage a samm:Entity ;
+   samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
+
+:RawDataEntry a samm:Entity ;
+   samm:properties ( :description :id :data ) .
+
+:stage1RawMaterialPreProcessing a samm:Property ;
+   samm:preferredName "Raw material acquisition and pre-processing"@en ;
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait .
+
+:stage2MainProductProduction a samm:Property ;
+   samm:preferredName "Main product production"@en ;
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait .
+
+:stage3Distribution a samm:Property ;
+   samm:preferredName "Stage Distribution"@en ;
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
+   samm:exampleValue "0"^^xsd:float .
+
+:stage4EndOfLifeRecycling a samm:Property ;
+   samm:preferredName "End-Of-Life and recycling"@en ;
+   samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
+   samm:characteristic :Stage1RawMaterialPreProcessingTrait ;
+   samm:exampleValue "0"^^xsd:float .
+
+:description a samm:Property ;
+   samm:description "This field contains the description of the contained data. Use this field to provide information on the data provided in this section"@en ;
+   samm:characteristic samm-c:Text .
+
+:id a samm:Property ;
+   samm:description "Identifier for this data. Use this data to reference this entry"@en ;
+   samm:characteristic samm-c:Text .
+
+:data a samm:Property ;
+   samm:characteristic :CharacteristicData .
+
+:Stage1RawMaterialPreProcessingTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicStage ;
+   samm-c:constraint :Constraint2 .
+
+:CharacteristicData a samm-c:List ;
+   samm:dataType :DataEntry .
+
+:CharacteristicStage a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:Constraint2 a samm-c:RangeConstraint ;
+   samm:description "This constraint defines the the range for the stage properties where each stage is a percentage value"@en ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "1"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:DataEntry a samm:Entity ;
+   samm:properties ( :key :value ) .
+
+:key a samm:Property ;
+   samm:characteristic samm-c:Text .
+
+:value a samm:Property ;
+   samm:characteristic :CharacteristicValue .
+
+:CharacteristicValue a samm:Characteristic ;
+   samm:dataType xsd:float .
+
