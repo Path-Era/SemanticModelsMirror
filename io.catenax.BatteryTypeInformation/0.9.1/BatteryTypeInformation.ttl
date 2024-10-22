@@ -14,7 +14,7 @@
 :BatteryTypeInformation a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry ) ;
+   samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -54,6 +54,11 @@
    samm:characteristic :CharacteristicBatteryChemistry ;
    samm:exampleValue "Lithium-Ion" .
 
+:componentInformation a samm:Property ;
+   samm:preferredName "Component Information"@en ;
+   samm:description "Information on the main components anode, cathode an electrolyte"@en ;
+   samm:characteristic :CharacteristicComponents .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -79,6 +84,9 @@
 :CharacteristicBatteryChemistry a samm:Characteristic ;
    samm:dataType xsd:string .
 
+:CharacteristicComponents a samm:Characteristic ;
+   samm:dataType :EntityComponents .
+
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -95,6 +103,9 @@
 
 :RoundTrip a samm:Entity ;
    samm:properties ( :initalSelfDischarge :initialRoundTripEfficiency ) .
+
+:EntityComponents a samm:Entity ;
+   samm:properties ( :anode :cathode :electrolyte ) .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -176,6 +187,18 @@
    samm:characteristic :MinCapacityTrait ;
    samm:exampleValue 10 .
 
+:anode a samm:Property ;
+   samm:characteristic :CasTrait ;
+   samm:exampleValue "7440-48-0" .
+
+:cathode a samm:Property ;
+   samm:characteristic :CasTrait ;
+   samm:exampleValue "7439-93-2" .
+
+:electrolyte a samm:Property ;
+   samm:characteristic :CasTrait ;
+   samm:exampleValue "7439-93-2" .
+
 :UnitRelevantCharacteristic a samm:Characteristic ;
    samm:preferredName "UnitRelevantCharacteristic"@en ;
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
@@ -193,6 +216,10 @@
    samm-c:baseCharacteristic :PercentageCharacteristic ;
    samm-c:constraint :Constraint1 .
 
+:CasTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicCas ;
+   samm-c:constraint :Constraint2 .
+
 :Value a samm:Entity ;
    samm:preferredName "Value"@en ;
    samm:description "Value"@en ;
@@ -208,6 +235,12 @@
    samm-c:maxValue 100 ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:CharacteristicCas a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:Constraint2 a samm-c:RegularExpressionConstraint ;
+   samm:value "[0-9]{2-7}-[0-9]{3}-[0-9]{2}" .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
