@@ -40,7 +40,7 @@
    samm:properties ( :materialName :massPercentage ) .
 
 :EntityHazardInformation a samm:Entity ;
-   samm:properties ( :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :casNumber :clpIndex :name :rangeScipConcentration ) .
+   samm:properties ( :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :hazardouseMaterialName :clpIndex :rangeScipConcentration ) .
 
 :materialName a samm:Property ;
    samm:preferredName "Material Name"@en ;
@@ -74,21 +74,16 @@
    samm:preferredName "Impact of substances on the enviroment, human health, safety"@en ;
    samm:characteristic samm-c:Text .
 
-:casNumber a samm:Property ;
-   samm:characteristic :CathodeTrait ;
-   samm:exampleValue "1234-321-2" .
+:hazardouseMaterialName a samm:Property ;
+   samm:preferredName "Common Name of this hazardous materail"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "Lead" .
 
 :clpIndex a samm:Property ;
    samm:preferredName "CLP Index"@en ;
    samm:description "This contains the CLP Index for the related material"@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "toxic" .
-
-:name a samm:Property ;
-   samm:preferredName "Material Name"@en ;
-   samm:description "Name of the Material"@en ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "Lithium" .
 
 :rangeScipConcentration a samm:Property ;
    samm:preferredName "Concentration Range according to SCIP "@en ;
@@ -97,10 +92,6 @@
 :MassPercentageTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :MassPercentage ;
    samm-c:constraint :PercentageConstraint .
-
-:CathodeTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CASCharacteristics ;
-   samm-c:constraint :CASREGEX .
 
 :MassPercentage a samm:Characteristic ;
    samm:description "Percentage of related Material "@en ;
@@ -111,11 +102,4 @@
    samm-c:maxValue 100 ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
-
-:CASCharacteristics a samm:Characteristic ;
-   samm:description "Characteristic to model CAS Numbers de.wikipedia.org/wiki/CAS-Nummer"@en ;
-   samm:dataType xsd:string .
-
-:CASREGEX a samm-c:RegularExpressionConstraint ;
-   samm:value "[0 - 9]{2-7}-[0-9]{3}-[0-9]{2}" .
 
