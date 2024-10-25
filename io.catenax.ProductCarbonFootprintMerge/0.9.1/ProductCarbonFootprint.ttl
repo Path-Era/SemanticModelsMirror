@@ -12,7 +12,7 @@
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :ProductCarbonFootprint a samm:Aspect ;
-   samm:properties ( :cxPCFValues ) ;
+   samm:properties ( :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
