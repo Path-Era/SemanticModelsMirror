@@ -233,7 +233,7 @@
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :EntityComponent a samm:Entity ;
-   samm:properties ( :precisionRange :massPercentage ) .
+   samm:properties ( :precisionRange :massPercentage :materialName ) .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
@@ -255,6 +255,13 @@
 :massPercentage a samm:Property ;
    samm:characteristic :MassPercentageTrait ;
    samm:exampleValue "45"^^xsd:float .
+
+:materialName a samm:Property ;
+   samm:preferredName "Material Name of referenced Component"@en ;
+   samm:description "Use one of the critical raw materials listed in the link below"@en ;
+   samm:see <https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/critical-raw-materials_en> ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "Lithium" .
 
 :PrecisionRangeTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :Characteristic1 ;
