@@ -233,7 +233,7 @@
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :EntityComponent a samm:Entity ;
-   samm:properties ( :precisionRange :massPercentage :materialName ) .
+   samm:properties ( :precisionRange :massPercentage :materialIdentifier ) .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
@@ -256,12 +256,12 @@
    samm:characteristic :MassPercentageTrait ;
    samm:exampleValue "45"^^xsd:float .
 
-:materialName a samm:Property ;
-   samm:preferredName "Material Name of referenced Component"@en ;
+:materialIdentifier a samm:Property ;
+   samm:preferredName "CAS-Number of referenced Component"@en ;
    samm:description "Use one of the critical raw materials listed in the link below"@en ;
    samm:see <https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/critical-raw-materials_en> ;
-   samm:characteristic samm-c:Text ;
-   samm:exampleValue "Lithium" .
+   samm:characteristic :MaterialIdentifierTrait ;
+   samm:exampleValue "1234-567-89" .
 
 :PrecisionRangeTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :Characteristic1 ;
@@ -270,6 +270,10 @@
 :MassPercentageTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicMassPercentage ;
    samm-c:constraint :Constraint3 .
+
+:MaterialIdentifierTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicCAS ;
+   samm-c:constraint :ConstraintCAS .
 
 :Characteristic1 a samm:Characteristic ;
    samm:dataType xsd:float .
@@ -288,4 +292,10 @@
    samm-c:maxValue "100"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:CharacteristicCAS a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:ConstraintCAS a samm-c:RegularExpressionConstraint ;
+   samm:value "[0-9]{2-7}-[0-9]{3}-[0-9]{2}" .
 
