@@ -62,6 +62,7 @@
 
 :EntityStagePercentage a samm:Entity ;
    samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
+   samm:properties ( :stage1RawMaterialAquisitionPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
 
 :RawDataEntry a samm:Entity ;
    samm:properties ( :description :id :data ) .
@@ -75,7 +76,7 @@
    samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
    samm:characteristic :CharacteristicDeclaredUnit .
 
-:stage1RawMaterialPreProcessing a samm:Property ;
+:stage1RawMaterialAquisitionPreProcessing a samm:Property ;
    samm:preferredName "Raw material acquisition and pre-processing"@en ;
    samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
    samm:characteristic :Stage1RawMaterialPreProcessingTrait .
