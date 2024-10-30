@@ -12,7 +12,7 @@
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :ProductCarbonFootprint a samm:Aspect ;
-   samm:properties ( :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ) ;
+   samm:properties ( :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ext-pcf:secondaryEmissionFactorSources ext-pcf:primaryDataShare ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -61,7 +61,6 @@
    samm:properties ( :valuePcf :declaredUnit ) .
 
 :EntityStagePercentage a samm:Entity ;
-   samm:properties ( :stage1RawMaterialPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
    samm:properties ( :stage1RawMaterialAquisitionPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
 
 :RawDataEntry a samm:Entity ;
