@@ -213,7 +213,7 @@
    samm-c:baseCharacteristic :PercentageCharacteristic ;
    samm-c:constraint :Constraint1 .
 
-:CharacteristicComponent a samm:Characteristic ;
+:CharacteristicComponent a samm-c:List ;
    samm:dataType :EntityComponent .
 
 :Value a samm:Entity ;
