@@ -25,7 +25,7 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :absPCFValue :stagePercentages :rawData :pcfPerformanceClass :webLinkToCarbonFootPrintStudy ) .
+   samm:properties ( :absPCFValue :stagePercentages [ samm:property :rawData; samm:optional true ] :pcfPerformanceClass :webLinkToCarbonFootPrintStudy ) .
 
 :absPCFValue a samm:Property ;
    samm:characteristic :CharacteristicAbsPcfValue .
