@@ -102,7 +102,7 @@
    samm:dataType xsd:string .
 
 :Constraint1 a samm-c:RegularExpressionConstraint ;
-   samm:value "[0-9]{2-7}-[0-9]{3}-[0-9]{2}" .
+   samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
 
 :MassPercentage a samm:Characteristic ;
    samm:description "Percentage of related Material "@en ;
