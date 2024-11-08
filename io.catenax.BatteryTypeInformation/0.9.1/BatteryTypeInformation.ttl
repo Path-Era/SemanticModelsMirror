@@ -297,5 +297,5 @@
    samm:dataType xsd:string .
 
 :ConstraintCAS a samm-c:RegularExpressionConstraint ;
-   samm:value "[0-9]{2-7}-[0-9]{3}-[0-9]{2}" .
+   samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
 
