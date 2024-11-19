@@ -109,7 +109,7 @@
    samm:properties ( :internalCellResistance :internalModuleResistance :internalPackResistance ) .
 
 :BatteryLifetime a samm:Entity ;
-   samm:properties ( :expectedLifetime :minCapacity :soceThreshold ) .
+   samm:properties ( :expectedLifetime ) .
 
 :RoundTrip a samm:Entity ;
    samm:properties ( :initalSelfDischarge :initialRoundTripEfficiency ) .
@@ -181,18 +181,6 @@
    samm:description "Expected Lifetime of this battery time measured in charge-discharge cycles"@en ;
    samm:characteristic :ExpectedLifetime ;
    samm:exampleValue "2500"^^xsd:positiveInteger .
-
-:minCapacity a samm:Property ;
-   samm:preferredName "Capacity threshold for exhaustion"@en ;
-   samm:description "Minimum Percentage of rated capacity, above which the battery is still considered operational"@en ;
-   samm:characteristic :MinCapacityTrait ;
-   samm:exampleValue 69 .
-
-:soceThreshold a samm:Property ;
-   samm:preferredName "SOCE Threshold"@en ;
-   samm:description "SOCE Standard as metric for the exhaustion status of a EV battery"@en ;
-   samm:characteristic :MinCapacityTrait ;
-   samm:exampleValue 75 .
 
 :initalSelfDischarge a samm:Property ;
    samm:preferredName "Initial Self-Discharging Rage"@en ;
