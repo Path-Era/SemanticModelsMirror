@@ -78,5 +78,5 @@
 
 :CharacteristicDocType a samm-c:Enumeration ;
    samm:dataType xsd:string ;
-   samm-c:values ( "ManualRemovalOfTheBatteryFromAppliance" "ManualDissasemblyDismantlingBatteryPack" "ExtinguishingAgent" "SafetyMeasruementsInstructions" "EU-DeclarationOfConformity" "EU-DeclarationCOnformityID" "ResultsTestReports" "SeparateCollectionSymbol" "MeaningLablesSymbols" "CadmiumLeadSymboly" "InformationOnDueDiligenceReport" "ThirdPartySupplyChainAssurances" "EU-TaxonomyDisclosureStatement" "SustainabiliyReport" ) .
+   samm-c:values ( "ManualRemovalOfTheBatteryFromAppliance" "ManualDissasemblyDismantlingBatteryPack" "ExtinguishingAgent" "SafetyMeasruementsInstructions"  "ResultsTestReports" "SeparateCollectionSymbol" "MeaningLablesSymbols" "CadmiumLeadSymboly" "InformationOnDueDiligenceReport" "ThirdPartySupplyChainAssurances" "EU-TaxonomyDisclosureStatement" "SustainabiliyReport" ) .
 
