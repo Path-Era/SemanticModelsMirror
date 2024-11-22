@@ -11,6 +11,7 @@
 @prefix bpn: <urn:samm:io.catenax.shared.business_partner_number:2.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 @prefix serialPart: <urn:samm:io.catenax.serial_part:3.0.0#> .
+@prefix shared-quant: <urn:samm:io.catenax.shared.quantity:2.0.0#> .
 
 :SpecialCharacteristicMeasurement a samm:Aspect ;
    samm:preferredName "SpecialCharacteristicMeasurment"@en ;
@@ -56,7 +57,7 @@
 :MeasurmentObject a samm:Entity ;
    samm:preferredName "Measurmentobject"@en ;
    samm:description "This Entity represents a generic Measurment Object"@en ;
-   samm:properties ( :identifier :measurementTimestamp :value :unit :description ) .
+   samm:properties ( :identifier :measurementTimestamp :valueOfInterest :description ) .
 
 :identifier a samm:Property ;
    samm:preferredName "Identifier"@en ;
@@ -69,21 +70,14 @@
    samm:description "Timestamp when the measurement was taken"@en ;
    samm:characteristic samm-c:Timestamp .
 
-:value a samm:Property ;
-   samm:characteristic :ValueCharacteristic ;
-   samm:exampleValue "12.09"^^xsd:float .
-
-:unit a samm:Property ;
-   samm:preferredName "Unit "@en ;
-   samm:description "Unit of the measured value"@en ;
-   samm:characteristic samm-c:UnitReference .
+:valueOfInterest a samm:Property ;
+   samm:preferredName "Measured value of Interest"@en ;
+   samm:description "Main measurement of interest for this special characteristic"@en ;
+   samm:characteristic  shared-quant:LinearCharacteristic .
 
 :description a samm:Property ;
    samm:preferredName "Description"@en ;
    samm:description "Use this attribute to give a more detailed description to this measurement. "@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "This text gives you context to the related measurement to help to put it into the necessary context." .
-
-:ValueCharacteristic a samm:Characteristic ;
-   samm:dataType xsd:float .
 
