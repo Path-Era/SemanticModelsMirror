@@ -40,7 +40,7 @@
    samm:properties ( :casNumber :massPercentage ) .
 
 :EntityHazardInformation a samm:Entity ;
-   samm:properties ( :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :hazardouseMaterialCas :clpIndex :rangeScipConcentration ) .
+   samm:properties ( :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex :rangeScipConcentration ) .
 
 :casNumber a samm:Property ;
    samm:preferredName "CAS-Number of the material "@en ;
@@ -74,7 +74,7 @@
    samm:preferredName "Impact of substances on the enviroment, human health, safety"@en ;
    samm:characteristic samm-c:Text .
 
-:hazardouseMaterialCas a samm:Property ;
+:hazardousMaterialCas a samm:Property ;
    samm:preferredName "CAS Number of material"@en ;
    samm:description "CAS number of the hazardous material"@en ;
    samm:characteristic :CasNumberTrait ;
