@@ -37,7 +37,7 @@
 
 :Material a samm:Entity ;
    samm:description "Material Description of the Anode Cathode an Electrolyte"@en ;
-   samm:properties ( :criticalRawMaterialName :massPercentage ) .
+   samm:properties ( :criticalRawMaterialName :percentageOfMaterialWeight ) .
 
 :EntityHazardInformation a samm:Entity ;
    samm:properties ( :hazardClassification :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex :rangeScipConcentration ) .
@@ -48,8 +48,8 @@
    samm:see <https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/critical-raw-materials_en> ;
    samm:characteristic :CharacteristicCriticalRawMaterialName .
 
-:massPercentage a samm:Property ;
-   samm:preferredName "Mass Percentage"@en ;
+:percentageOfMaterialWeight a samm:Property ;
+   samm:preferredName "Percentage of Material Name"@en ;
    samm:description "contains the Mass percentage of this material of the Anode, Cathode or Electrolyte "@en ;
    samm:characteristic :MassPercentageTrait ;
    samm:exampleValue "10"^^xsd:float .
@@ -91,14 +91,14 @@
    samm-c:values ( "Antimony" "Arsenic" "Aluminium/Bauxite" "Baryte" "Beryllium" "Bismuth" "Boron/borates" "Cobalt" "Coking Coal" "Copper" "Feldspar" "Fluorspar" "Gallium" "Germanium" "Hafnium" "Helium" "Heavy Rare Earth Elements" "Light Rare Earth Elements" "Lithium" "Magnesium" "Manganese" "Natural Graphite" "Nickel - battery grade" "Niobium" "Phosphate rock" "Phosphorus" "Platiunm Group Metals" "Scandium" "Silicon metal" "Strontium" "Tantalum" "Titanium metal" "Tungsten" "Vanadium" ) .
 
 :MassPercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :MassPercentage ;
+   samm-c:baseCharacteristic :CharacteristicPercentageOfMaterialWeight ;
    samm-c:constraint :PercentageConstraint .
 
 :CasNumberTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicCAS ;
    samm-c:constraint :Constraint1 .
 
-:MassPercentage a samm:Characteristic ;
+:CharacteristicPercentageOfMaterialWeight a samm:Characteristic ;
    samm:description "Percentage of related Material "@en ;
    samm:dataType xsd:float .
 
