@@ -7,12 +7,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <urn:samm:io.catenax.ProductCarbonFootprintBatteryPass:1.0.0#> .
+@prefix : <urn:samm:io.catenax.ProductCarbonFootprint_for_BatterySupplier:1.0.0#> .
 @prefix ext-pcf: <urn:samm:io.catenax.pcf:7.0.0#> .
 @prefix ext-serial-part: <urn:samm:io.catenax.serial_part:3.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
-:ProductCarbonFootprintBatteryPass a samm:Aspect ;
+:ProductCarbonFootprintForBatterySupplier a samm:Aspect ;
    samm:properties ( :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ext-pcf:secondaryEmissionFactorSources [ samm:property ext-pcf:primaryDataShare; samm:optional true ] [ samm:property :manufacturerPartId; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
