@@ -7,11 +7,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <urn:samm:io.catenax.BatteryTypeInformation:0.9.2#> .
+@prefix : <urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:0.9.2#> .
 @prefix ext-ptf: <urn:samm:io.catenax.part_type_information:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
-:BatteryTypeInformation a samm:Aspect ;
+:BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
    samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation ) ;
