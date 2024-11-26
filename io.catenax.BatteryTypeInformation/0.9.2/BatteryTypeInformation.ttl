@@ -14,7 +14,7 @@
 :BatteryTypeInformation a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation [ samm:property :renewableContentShare; samm:optional true ] ) ;
+   samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -59,12 +59,6 @@
    samm:description "Information on the main components anode, cathode an electrolyte"@en ;
    samm:characteristic :CharacteristicComponents .
 
-:renewableContentShare a samm:Property ;
-   samm:preferredName "Renewable Content Share"@en ;
-   samm:description "Percentage of the whole material content which ich renewable"@en ;
-   samm:characteristic :MassPercentageTrait ;
-   samm:exampleValue "42.01"^^xsd:float .
-
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -93,10 +87,6 @@
 :CharacteristicComponents a samm:Characteristic ;
    samm:dataType :EntityComponents .
 
-:MassPercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CharacteristicMassPercentage ;
-   samm-c:constraint :Constraint3 .
-
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -116,15 +106,6 @@
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
-
-:CharacteristicMassPercentage a samm:Characteristic ;
-   samm:dataType xsd:float .
-
-:Constraint3 a samm-c:RangeConstraint ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:maxValue "100"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -274,6 +255,10 @@
    samm-c:baseCharacteristic :Characteristic1 ;
    samm-c:constraint :ConstraintPrecisionFloat .
 
+:MassPercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicMassPercentage ;
+   samm-c:constraint :Constraint3 .
+
 :MaterialIdentifierTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicCAS ;
    samm-c:constraint :ConstraintCAS .
@@ -284,6 +269,15 @@
 :ConstraintPrecisionFloat a samm-c:RangeConstraint ;
    samm-c:minValue "0"^^xsd:float ;
    samm-c:maxValue "1"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:CharacteristicMassPercentage a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:Constraint3 a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "100"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
