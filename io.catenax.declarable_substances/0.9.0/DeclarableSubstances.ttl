@@ -40,7 +40,7 @@
    samm:properties ( :casNumber :massPercentage ) .
 
 :EntityHazardInformation a samm:Entity ;
-   samm:properties ( :hazardClassification :hazardClassIdentifier :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex :rangeScipConcentration ) .
+   samm:properties ( :hazardClassification :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex :rangeScipConcentration ) .
 
 :casNumber a samm:Property ;
    samm:preferredName "CAS-Number of the material "@en ;
@@ -53,16 +53,11 @@
    samm:preferredName "Mass Percentage"@en ;
    samm:description "contains the Mass percentage of this material of the Anode, Cathode or Electrolyte "@en ;
    samm:characteristic :MassPercentageTrait ;
-   samm:exampleValue 10 .
+   samm:exampleValue "10"^^xsd:float .
 
 :hazardClassification a samm:Property ;
    samm:preferredName "Hazard Classification and/or Category of the material"@en ;
    samm:description "The classification and category is defined by the CLP Regulation"@en ;
-   samm:characteristic samm-c:Text .
-
-:hazardClassIdentifier a samm:Property ;
-   samm:preferredName "Identifier of hazardous Classification"@en ;
-   samm:description "The identifier depends on the CLP Regulation "@en ;
    samm:characteristic samm-c:Text .
 
 :locationOfHazardousSubstances a samm:Property ;
@@ -106,11 +101,11 @@
 
 :MassPercentage a samm:Characteristic ;
    samm:description "Percentage of related Material "@en ;
-   samm:dataType xsd:integer .
+   samm:dataType xsd:float .
 
 :PercentageConstraint a samm-c:RangeConstraint ;
-   samm-c:minValue 0 ;
-   samm-c:maxValue 100 ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "100"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
