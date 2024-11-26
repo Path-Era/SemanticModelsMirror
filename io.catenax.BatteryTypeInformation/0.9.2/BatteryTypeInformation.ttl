@@ -221,7 +221,7 @@
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :EntityComponent a samm:Entity ;
-   samm:properties ( :precisionRange :massPercentage :materialIdentifier ) .
+   samm:properties ( :precisionRange :percentageOfMaterialWeight :materialIdentifier ) .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
@@ -240,7 +240,7 @@
    samm:characteristic :PrecisionRangeTrait ;
    samm:exampleValue ".1"^^xsd:float .
 
-:massPercentage a samm:Property ;
+:percentageOfMaterialWeight a samm:Property ;
    samm:characteristic :MassPercentageTrait ;
    samm:exampleValue "45"^^xsd:float .
 
@@ -256,7 +256,7 @@
    samm-c:constraint :ConstraintPrecisionFloat .
 
 :MassPercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CharacteristicMassPercentage ;
+   samm-c:baseCharacteristic :CharacteristicPercentageOfMaterialName ;
    samm-c:constraint :Constraint3 .
 
 :MaterialIdentifierTrait a samm-c:Trait ;
@@ -272,7 +272,7 @@
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
-:CharacteristicMassPercentage a samm:Characteristic ;
+:CharacteristicPercentageOfMaterialName a samm:Characteristic ;
    samm:dataType xsd:float .
 
 :Constraint3 a samm-c:RangeConstraint ;
