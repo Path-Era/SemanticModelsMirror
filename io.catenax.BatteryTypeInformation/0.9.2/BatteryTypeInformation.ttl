@@ -90,10 +90,10 @@
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
-   samm:properties ( :ratedCapacity :minimumVoltage :maximumVoltage :nominalVoltage ) .
+   samm:properties ( :ratedCapacity :minimumVoltage :maximumVoltage [ samm:property :nominalVoltage; samm:optional true ] ) .
 
 :PowerCapabilityEntitiy a samm:Entity ;
-   samm:properties ( :originalPowerCapability :maxPermittedBatteryPower :nominalToMaxPowerRatio ) .
+   samm:properties ( :originalPowerCapability :maxPermittedBatteryPower [ samm:property :nominalToMaxPowerRatio; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
    samm:properties ( :internalCellResistance :internalModuleResistance :internalPackResistance ) .
