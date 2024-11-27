@@ -8,6 +8,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:0.9.2#> .
+@prefix ext-batPass: <urn:samm:io.catenax.battery.battery_pass:6.0.0#> .
 @prefix ext-passport: <urn:samm:io.catenax.generic.digital_product_passport:5.0.0#> .
 @prefix ext-ptf: <urn:samm:io.catenax.part_type_information:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
@@ -15,7 +16,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] ) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
