@@ -93,7 +93,7 @@
    samm:properties ( [ samm:property :ratedCapacity; samm:optional true ] [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] ) .
 
 :PowerCapabilityEntitiy a samm:Entity ;
-   samm:properties ( :originalPowerCapability :maxPermittedBatteryPower [ samm:property :nominalToMaxPowerRatio; samm:optional true ] ) .
+   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
    samm:properties ( :internalCellResistance :internalModuleResistance :internalPackResistance ) .
