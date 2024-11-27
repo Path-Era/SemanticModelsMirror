@@ -102,7 +102,7 @@
    samm:properties ( :expectedLifetime ) .
 
 :RoundTrip a samm:Entity ;
-   samm:properties ( :initalSelfDischarge :initialRoundTripEfficiency ) .
+   samm:properties ( :initalSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] ) .
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
