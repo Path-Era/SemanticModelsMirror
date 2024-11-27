@@ -8,13 +8,14 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:0.9.2#> .
+@prefix ext-passport: <urn:samm:io.catenax.generic.digital_product_passport:5.0.0#> .
 @prefix ext-ptf: <urn:samm:io.catenax.part_type_information:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation ) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -59,6 +60,9 @@
    samm:description "Information on the main components anode, cathode an electrolyte"@en ;
    samm:characteristic :CharacteristicComponents .
 
+:documentList a samm:Property ;
+   samm:characteristic :CharacteristicDocumentList .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -87,6 +91,9 @@
 :CharacteristicComponents a samm:Characteristic ;
    samm:dataType :EntityComponents .
 
+:CharacteristicDocumentList a samm-c:List ;
+   samm:dataType :DocumentEntity .
+
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -106,6 +113,9 @@
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
+
+:DocumentEntity a samm:Entity ;
+   samm:properties ( ext-passport:content ext-passport:contentType :header ) .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -184,6 +194,11 @@
 :electrolyte a samm:Property ;
    samm:characteristic :CharacteristicComponent .
 
+:header a samm:Property ;
+   samm:preferredName "header"@en ;
+   samm:description "Use the header to describe which kind of document is provided"@en ;
+   samm:characteristic :HeaderTrait .
+
 :UnitRelevantCharacteristic a samm:Characteristic ;
    samm:preferredName "UnitRelevantCharacteristic"@en ;
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
@@ -204,6 +219,10 @@
 :CharacteristicComponent a samm-c:List ;
    samm:dataType :EntityComponent .
 
+:HeaderTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicHeader ;
+   samm-c:constraint ext-passport:HeaderConstraint .
+
 :Value a samm:Entity ;
    samm:preferredName "Value"@en ;
    samm:description "Value"@en ;
@@ -222,6 +241,10 @@
 
 :EntityComponent a samm:Entity ;
    samm:properties ( :precisionRange :percentageOfMaterialWeight :materialIdentifier ) .
+
+:CharacteristicHeader a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "CycleLifeReferenceTest" "ResultOfTestReports" "SeperateCollectionSymbol" "SymbolAndLabelMeaning" "CadmiumAndLeadSymbols" ) .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
