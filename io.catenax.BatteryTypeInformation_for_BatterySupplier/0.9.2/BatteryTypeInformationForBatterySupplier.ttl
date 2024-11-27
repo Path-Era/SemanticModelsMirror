@@ -14,7 +14,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation ) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] :batteryCategory :powerCapability :resistanceInformation :batteryLifetime :roundTripEnergy :batteryChemistry :componentInformation ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
