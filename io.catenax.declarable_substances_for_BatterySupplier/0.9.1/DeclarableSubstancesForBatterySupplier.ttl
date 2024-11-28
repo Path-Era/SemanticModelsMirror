@@ -1,0 +1,153 @@
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.1#> .
+
+:DeclarableSubstancesForBatterySupplier: a samm:Aspect ;
+   samm:preferredName "Material master data"@en ;
+   samm:description "Describes the material master data. "@en ;
+   samm:properties ( <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#criticalRawMaterials> <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#hazardousMaterials> ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "100"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:CharacteristicCriticalRawMaterialName a samm-c:Enumeration ;
+   samm:description "Name of the critical raw material name one of the list provided, used list of 2023"@en ;
+   samm:see <https://rmis.jrc.ec.europa.eu/eu-critical-raw-materials> ;
+   samm:dataType xsd:string ;
+   samm-c:values (
+      "Antimony"
+      "Arsenic"
+      "Aluminium/Bauxite"
+      "Baryte"
+      "Beryllium"
+      "Bismuth"
+      "Boron/borates"
+      "Cobalt"
+      "Coking Coal"
+      "Copper"
+      "Feldspar"
+      "Fluorspar"
+      "Gallium"
+      "Germanium"
+      "Hafnium"
+      "Helium"
+      "Heavy Rare Earth Elements"
+      "Light Rare Earth Elements"
+      "Lithium"
+      "Magnesium"
+      "Manganese"
+      "Natural Graphite"
+      "Nickel - battery grade"
+      "Niobium"
+      "Phosphate rock"
+      "Phosphorus"
+      "Platiunm Group Metals"
+      "Scandium"
+      "Silicon metal"
+      "Strontium"
+      "Tantalum"
+      "Titanium metal"
+      "Tungsten"
+      "Vanadium"
+   ) .
+
+:enviromentalImpact a samm:Property ;
+   samm:preferredName "Impact of substances on the enviroment, human health, safety"@en ;
+   samm:characteristic samm-c:Text .
+
+:CharacteristicCAS a samm:Characteristic ;
+   samm:dataType xsd:string .
+
+:CharacteristicPercentageOfMaterialWeight a samm:Characteristic ;
+   samm:description "Percentage of related Material "@en ;
+   samm:dataType xsd:float .
+
+:MassPercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicPercentageOfMaterialWeight ;
+   samm-c:constraint :PercentageConstraint .
+
+:CasNumberTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicCAS ;
+   samm-c:constraint :Constraint1 .
+
+:rangeScipConcentration a samm:Property ;
+   samm:preferredName "Concentration Range according to SCIP "@en ;
+   samm:characteristic :MassPercentageTrait .
+
+:hazardousMaterials a samm:Property ;
+   samm:preferredName "Hazardous Materials"@en ;
+   samm:description "This list contains all Hazardous Materials contained in this product"@en ;
+   samm:characteristic :CharacteristicHazardousMaterialsList .
+
+:Constraint1 a samm-c:RegularExpressionConstraint ;
+   samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
+
+:locationOfHazardousSubstances a samm:Property ;
+   samm:preferredName "Location of Hazardous Substances"@en ;
+   samm:description "Description where the hazardous substances are located within this product"@en ;
+   samm:characteristic samm-c:Text .
+
+:CharacteristicHazardousMaterialsList a samm-c:List ;
+   samm:dataType :EntityHazardInformation .
+
+:criticalRawMaterialName a samm:Property ;
+   samm:preferredName "Critical Raw Material Name"@en ;
+   samm:description "Name of critical Raw Material"@en ;
+   samm:see <https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/critical-raw-materials_en> ;
+   samm:characteristic :CharacteristicCriticalRawMaterialName .
+
+:hazardousMaterialCas a samm:Property ;
+   samm:preferredName "CAS Number of material"@en ;
+   samm:description "CAS number of the hazardous material"@en ;
+   samm:characteristic :CasNumberTrait ;
+   samm:exampleValue "1234-567-89" .
+
+:percentageOfMaterialWeight a samm:Property ;
+   samm:preferredName "Percentage of Material Name"@en ;
+   samm:description "contains the Mass percentage of this material of the Anode, Cathode or Electrolyte "@en ;
+   samm:characteristic :MassPercentageTrait ;
+   samm:exampleValue "10"^^xsd:float .
+
+:CriciticalRawMaterialListCharacteristic a samm-c:List ;
+   samm:preferredName "CricticalRawMaterilaList"@en ;
+   samm:description "This List contains the CAS-Numbers of all Critical Raw Materials contained in this product"@en ;
+   samm:dataType :Material .
+
+:EntityHazardInformation a samm:Entity ;
+   samm:properties (
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#hazardClassification>
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#locationOfHazardousSubstances>
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#enviromentalImpact>
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#hazardousMaterialCas>
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#clpIndex>
+      <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#rangeScipConcentration>
+   ) .
+
+:hazardClassification a samm:Property ;
+   samm:preferredName "Hazard Classification and/or Category of the material"@en ;
+   samm:description "The classification and category is defined by the CLP Regulation"@en ;
+   samm:characteristic samm-c:Text .
+
+:Material a samm:Entity ;
+   samm:description "Material Description of the Anode Cathode an Electrolyte"@en ;
+   samm:properties ( <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#criticalRawMaterialName> <urn:samm:io.catenax.declarable_substances_for_BatterySupplier:0.9.0#percentageOfMaterialWeight> ) .
+
+:clpIndex a samm:Property ;
+   samm:preferredName "CLP Index"@en ;
+   samm:description "This contains the CLP Index for the related material"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "toxic" .
+
+:criticalRawMaterials a samm:Property ;
+   samm:preferredName "List of Critical Raw Materials"@en ;
+   samm:description "This list contains a representation of all critical raw materials used within the related product"@en ;
+   samm:characteristic :CriciticalRawMaterialListCharacteristic .
+
