@@ -365,7 +365,7 @@
 :PreConsumerEntity a samm:Entity ;
    samm:preferredName "Pre Consumer Entity"@en ;
    samm:description "Amount of material that is Pre-consumer material. Material diverted from the waste stream during a manufacturing process. Excluded is reutilization of materials such as rework, regrind or scrap generated in a process and capable of being reclaimed within the same process that generated it. Pre-consumer material can be used in form of recovered or recycled material as a substitute for primary material."@en ;
-   samm:properties ( :mechanicalRecycling ) .
+   samm:properties ( :mechanicalRecycling :chemicalRecycling ) .
 
 :PostConsumerEntity a samm:Entity ;
    samm:preferredName "Post Consumer Entity"@en ;
