@@ -16,7 +16,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation :batteryLifetime :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -110,7 +110,7 @@
    samm:properties ( :expectedLifetime ) .
 
 :RoundTrip a samm:Entity ;
-   samm:properties ( :initalSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] ) .
+   samm:properties ( :initialSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] ) .
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
@@ -174,7 +174,7 @@
    samm:characteristic :ExpectedLifetime ;
    samm:exampleValue "2500"^^xsd:positiveInteger .
 
-:initalSelfDischarge a samm:Property ;
+:initialSelfDischarge a samm:Property ;
    samm:preferredName "Initial Self-Discharging Rage"@en ;
    samm:description "Describes the Inital self discharging rate measured in % per month"@en ;
    samm:characteristic :MinCapacityTrait ;
