@@ -16,7 +16,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation [ samm:property :batteryLifetime; samm:optional true ] :roundTripEnergy [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime [ samm:property :batteryStatus; samm:optional true ] ) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime [ samm:property :batteryStatus; samm:optional true ] :temperatureRange ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -44,11 +44,6 @@
    samm:preferredName "Battery Lifetime"@en ;
    samm:description "This attribute contains information on the battery lifetime"@en ;
    samm:characteristic :LifetimeCharacteristic .
-
-:roundTripEnergy a samm:Property ;
-   samm:preferredName "Round Trip Energy Information"@en ;
-   samm:description "This attribute contains information about the self discharge properties and energy efficiency of the battery"@en ;
-   samm:characteristic :RoundTripCharacteristic .
 
 :batteryChemistry a samm:Property ;
    samm:preferredName "Battery Chemistry"@en ;
@@ -87,9 +82,6 @@
 :LifetimeCharacteristic a samm:Characteristic ;
    samm:dataType :BatteryLifetime .
 
-:RoundTripCharacteristic a samm:Characteristic ;
-   samm:dataType :RoundTrip .
-
 :CharacteristicComponents a samm:Characteristic ;
    samm:dataType :EntityComponents .
 
@@ -113,9 +105,6 @@
 
 :BatteryLifetime a samm:Entity ;
    samm:properties ( :expectedCycles :expectedCalenderYears ) .
-
-:RoundTrip a samm:Entity ;
-   samm:properties ( :initialSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] [ samm:property :roundTripAtHalfLife; samm:optional true ] ) .
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
@@ -190,22 +179,6 @@
    samm:characteristic :ExpectedLifetimeCharacteristic ;
    samm:exampleValue "69"^^xsd:positiveInteger .
 
-:initialSelfDischarge a samm:Property ;
-   samm:preferredName "Initial Self-Discharging Rage"@en ;
-   samm:description "Describes the Inital self discharging rate measured in % per month"@en ;
-   samm:characteristic :PercentageTrait ;
-   samm:exampleValue "5"^^xsd:float .
-
-:initialRoundTripEfficiency a samm:Property ;
-   samm:preferredName "Initial Roundtrip Efficiency"@en ;
-   samm:description "Energy round trip efficiency means the ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge by a standard charge"@en ;
-   samm:characteristic :PercentageTrait ;
-   samm:exampleValue "10"^^xsd:float .
-
-:roundTripAtHalfLife a samm:Property ;
-   samm:preferredName "Round Trip Energy at 50% Cycle Life"@en ;
-   samm:characteristic :PercentageTrait .
-
 :anode a samm:Property ;
    samm:characteristic :CharacteristicComponent .
 
@@ -232,10 +205,6 @@
 :ExpectedLifetimeCharacteristic a samm:Characteristic ;
    samm:dataType xsd:positiveInteger .
 
-:PercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :Float ;
-   samm-c:constraint :PercentageConstraint .
-
 :CharacteristicComponent a samm-c:List ;
    samm:dataType :EntityComponent .
 
@@ -256,11 +225,6 @@
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:LESS_THAN .
 
-:PercentageConstraint a samm-c:RangeConstraint ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:maxValue "1"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :EntityComponent a samm:Entity ;
    samm:properties ( :precisionRange :percentageOfMaterialWeight :materialIdentifier ) .
