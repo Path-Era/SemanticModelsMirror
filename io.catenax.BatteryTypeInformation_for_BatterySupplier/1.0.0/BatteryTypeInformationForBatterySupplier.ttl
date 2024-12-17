@@ -112,7 +112,7 @@
    samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] [ samm:property :internalModuleResistance; samm:optional true ] [ samm:property :internalPackResistance; samm:optional true ] ) .
 
 :BatteryLifetime a samm:Entity ;
-   samm:properties ( :expectedLifetime ) .
+   samm:properties ( :expectedCycles :expectedCalenderYears ) .
 
 :RoundTrip a samm:Entity ;
    samm:properties ( :initialSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] [ samm:property :roundTripAtHalfLife; samm:optional true ] ) .
@@ -180,11 +180,15 @@
    samm:description "Internal Resistance on a Pack level, measured on Ohm. Thi is a pre-use value."@en ;
    samm:characteristic :UnitRelevantCharacteristic .
 
-:expectedLifetime a samm:Property ;
+:expectedCycles a samm:Property ;
    samm:preferredName "Expected Lifetime "@en ;
    samm:description "Expected Lifetime of this battery time measured in charge-discharge cycles"@en ;
-   samm:characteristic :ExpectedLifetime ;
-   samm:exampleValue "2500"^^xsd:positiveInteger .
+   samm:characteristic :ExpectedLifetimeCharacteristic ;
+   samm:exampleValue "420"^^xsd:positiveInteger .
+
+:expectedCalenderYears a samm:Property ;
+   samm:characteristic :ExpectedLifetimeCharacteristic ;
+   samm:exampleValue "69"^^xsd:positiveInteger .
 
 :initialSelfDischarge a samm:Property ;
    samm:preferredName "Initial Self-Discharging Rage"@en ;
@@ -225,7 +229,7 @@
    samm-c:baseCharacteristic :Float ;
    samm-c:constraint :ConstraintGeq0 .
 
-:ExpectedLifetime a samm:Characteristic ;
+:ExpectedLifetimeCharacteristic a samm:Characteristic ;
    samm:dataType xsd:positiveInteger .
 
 :PercentageTrait a samm-c:Trait ;
