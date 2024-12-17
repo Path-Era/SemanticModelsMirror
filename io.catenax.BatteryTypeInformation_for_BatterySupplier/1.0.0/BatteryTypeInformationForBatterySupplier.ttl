@@ -109,7 +109,7 @@
    samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
-   samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] :internalModuleResistance [ samm:property :internalPackResistance; samm:optional true ] ) .
+   samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] [ samm:property :internalModuleResistance; samm:optional true ] [ samm:property :internalPackResistance; samm:optional true ] ) .
 
 :BatteryLifetime a samm:Entity ;
    samm:properties ( :expectedLifetime ) .
