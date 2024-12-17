@@ -16,7 +16,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime [ samm:property :batteryStatus; samm:optional true ] :temperatureRange ) ;
+   samm:properties ( [ samm:property :energy; samm:optional true ] [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] :resistanceInformation [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] :componentInformation [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] ext-batPass:ratedRoundTripEfficiency ext-batPass:lifetime [ samm:property :batteryStatus; samm:optional true ] [ samm:property :temperatureRange; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -63,6 +63,10 @@
    samm:preferredName "Battery Status"@en ;
    samm:characteristic :Characteristic1 .
 
+:temperatureRange a samm:Property ;
+   samm:preferredName "Temperature Range"@en ;
+   samm:characteristic :CharacteristicTempRange .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -92,6 +96,9 @@
    samm:dataType xsd:string ;
    samm-c:values ( "original" "repurposed" "reused" "remanufactured" "waste" ) .
 
+:CharacteristicTempRange a samm:Characteristic ;
+   samm:dataType :Range .
+
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -111,6 +118,9 @@
 
 :DocumentEntity a samm:Entity ;
    samm:properties ( ext-passport:content ext-passport:contentType :header ) .
+
+:Range a samm:Entity ;
+   samm:properties ( :lowerBoundary :upperBoundary ) .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -193,6 +203,12 @@
    samm:description "Use the header to describe which kind of document is provided"@en ;
    samm:characteristic :HeaderTrait .
 
+:lowerBoundary a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:upperBoundary a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
 :UnitRelevantCharacteristic a samm:Characteristic ;
    samm:preferredName "UnitRelevantCharacteristic"@en ;
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
@@ -224,7 +240,6 @@
    samm-c:minValue "0"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:LESS_THAN .
-
 
 :EntityComponent a samm:Entity ;
    samm:properties ( :precisionRange :percentageOfMaterialWeight :materialIdentifier ) .
@@ -260,9 +275,19 @@
    samm:characteristic :MaterialIdentifierTrait ;
    samm:exampleValue "1234-567-89" .
 
+:PercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Float ;
+   samm-c:constraint :PercentageConstraint .
+
 :MaterialIdentifierTrait a samm-c:Trait ;
    samm-c:baseCharacteristic samm-c:Text ;
    samm-c:constraint :ConstraintCAS .
+
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "1"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :ConstraintCAS a samm-c:RegularExpressionConstraint ;
    samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
