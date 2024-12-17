@@ -106,7 +106,7 @@
    samm:properties ( [ samm:property :ratedCapacity; samm:optional true ] [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] :capacityFade ) .
 
 :PowerCapabilityEntitiy a samm:Entity ;
-   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] ) .
+   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
    samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] :internalModuleResistance [ samm:property :internalPackResistance; samm:optional true ] ) .
@@ -159,8 +159,11 @@
 :nominalToMaxPowerRatio a samm:Property ;
    samm:preferredName "Nominal to max powert Ratio"@en ;
    samm:description "Ratio between nominal allowed battery power  (Watt) and battery energy (Watt hours) regulation specifies % but ratio suggest unit hz."@en ;
-   samm:characteristic :Float ;
-   samm:exampleValue "12"^^xsd:float .
+   samm:characteristic :ValueTrait .
+
+:ubeCertifiedUsableEnergy a samm:Property ;
+   samm:preferredName "Certified usable battery Entergy"@en ;
+   samm:characteristic :ValueTrait .
 
 :internalCellResistance a samm:Property ;
    samm:preferredName "Internal Cell Resistance"@en ;
@@ -214,8 +217,9 @@
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
    samm:dataType :Value .
 
-:Float a samm:Characteristic ;
-   samm:dataType xsd:float .
+:ValueTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Float ;
+   samm-c:constraint :ConstraintGeq0 .
 
 :ExpectedLifetime a samm:Characteristic ;
    samm:dataType xsd:positiveInteger .
@@ -235,6 +239,14 @@
    samm:preferredName "Value"@en ;
    samm:description "Value"@en ;
    samm:properties ( :unit :value ) .
+
+:Float a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:ConstraintGeq0 a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:LESS_THAN .
 
 :PercentageConstraint a samm-c:RangeConstraint ;
    samm-c:minValue "0"^^xsd:float ;
@@ -257,8 +269,7 @@
 :value a samm:Property ;
    samm:preferredName "value"@en ;
    samm:description "relevant value"@en ;
-   samm:characteristic :Float ;
-   samm:exampleValue "4.20"^^xsd:float .
+   samm:characteristic :ValueTrait .
 
 :precisionRange a samm:Property ;
    samm:preferredName "Precision Range"@en ;
