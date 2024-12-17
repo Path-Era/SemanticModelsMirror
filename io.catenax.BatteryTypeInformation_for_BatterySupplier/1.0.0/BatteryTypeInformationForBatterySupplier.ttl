@@ -154,7 +154,7 @@
 :nominalToMaxPowerRatio a samm:Property ;
    samm:preferredName "Nominal to max powert Ratio"@en ;
    samm:description "Ratio between nominal allowed battery power  (Watt) and battery energy (Watt hours) regulation specifies % but ratio suggest unit hz."@en ;
-   samm:characteristic :ValueCharatcteristic ;
+   samm:characteristic :Float ;
    samm:exampleValue "12"^^xsd:float .
 
 :internalCellResistance a samm:Property ;
@@ -181,14 +181,14 @@
 :initialSelfDischarge a samm:Property ;
    samm:preferredName "Initial Self-Discharging Rage"@en ;
    samm:description "Describes the Inital self discharging rate measured in % per month"@en ;
-   samm:characteristic :MinCapacityTrait ;
-   samm:exampleValue 5 .
+   samm:characteristic :PercentageTrait ;
+   samm:exampleValue "5"^^xsd:float .
 
 :initialRoundTripEfficiency a samm:Property ;
    samm:preferredName "Initial Roundtrip Efficiency"@en ;
    samm:description "Energy round trip efficiency means the ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge by a standard charge"@en ;
-   samm:characteristic :MinCapacityTrait ;
-   samm:exampleValue 10 .
+   samm:characteristic :PercentageTrait ;
+   samm:exampleValue "10"^^xsd:float .
 
 :anode a samm:Property ;
    samm:characteristic :CharacteristicComponent .
@@ -209,17 +209,15 @@
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
    samm:dataType :Value .
 
-:ValueCharatcteristic a samm:Characteristic ;
-   samm:preferredName "value"@en ;
-   samm:description "This value is a SI value Such as capacity, voltage etc"@en ;
+:Float a samm:Characteristic ;
    samm:dataType xsd:float .
 
 :ExpectedLifetime a samm:Characteristic ;
    samm:dataType xsd:positiveInteger .
 
-:MinCapacityTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :PercentageCharacteristic ;
-   samm-c:constraint :Constraint1 .
+:PercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Float ;
+   samm-c:constraint :PercentageConstraint .
 
 :CharacteristicComponent a samm-c:List ;
    samm:dataType :EntityComponent .
@@ -233,14 +231,9 @@
    samm:description "Value"@en ;
    samm:properties ( :unit :value ) .
 
-:PercentageCharacteristic a samm:Characteristic ;
-   samm:preferredName "PercentageCharacteristic"@en ;
-   samm:description "Characteristic to describe a percentage value within 0-100"@en ;
-   samm:dataType xsd:integer .
-
-:Constraint1 a samm-c:RangeConstraint ;
-   samm-c:minValue 0 ;
-   samm-c:maxValue 100 ;
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "1"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
 
@@ -259,17 +252,17 @@
 :value a samm:Property ;
    samm:preferredName "value"@en ;
    samm:description "relevant value"@en ;
-   samm:characteristic :ValueCharatcteristic ;
+   samm:characteristic :Float ;
    samm:exampleValue "4.20"^^xsd:float .
 
 :precisionRange a samm:Property ;
    samm:preferredName "Precision Range"@en ;
    samm:description "Use this attribute to specify the precision "@en ;
-   samm:characteristic :PrecisionRangeTrait ;
+   samm:characteristic :PercentageTrait ;
    samm:exampleValue ".1"^^xsd:float .
 
 :percentageOfMaterialWeight a samm:Property ;
-   samm:characteristic :MassPercentageTrait ;
+   samm:characteristic :PercentageTrait ;
    samm:exampleValue "45"^^xsd:float .
 
 :materialIdentifier a samm:Property ;
@@ -279,35 +272,9 @@
    samm:characteristic :MaterialIdentifierTrait ;
    samm:exampleValue "1234-567-89" .
 
-:PrecisionRangeTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :Characteristic1 ;
-   samm-c:constraint :ConstraintPrecisionFloat .
-
-:MassPercentageTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :CharacteristicPercentageOfMaterialName ;
-   samm-c:constraint :Constraint3 .
-
 :MaterialIdentifierTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicCAS ;
    samm-c:constraint :ConstraintCAS .
-
-:Characteristic1 a samm:Characteristic ;
-   samm:dataType xsd:float .
-
-:ConstraintPrecisionFloat a samm-c:RangeConstraint ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:maxValue "1"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
-
-:CharacteristicPercentageOfMaterialName a samm:Characteristic ;
-   samm:dataType xsd:float .
-
-:Constraint3 a samm-c:RangeConstraint ;
-   samm-c:minValue "0"^^xsd:float ;
-   samm-c:maxValue "100"^^xsd:float ;
-   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
-   samm-c:upperBoundDefinition samm-c:AT_MOST .
 
 :CharacteristicCAS a samm:Characteristic ;
    samm:dataType xsd:string .
