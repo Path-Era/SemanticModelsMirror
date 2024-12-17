@@ -115,7 +115,7 @@
    samm:properties ( :expectedLifetime ) .
 
 :RoundTrip a samm:Entity ;
-   samm:properties ( :initialSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] ) .
+   samm:properties ( :initialSelfDischarge [ samm:property :initialRoundTripEfficiency; samm:optional true ] [ samm:property :roundTripAtHalfLife; samm:optional true ] ) .
 
 :EntityComponents a samm:Entity ;
    samm:properties ( :anode :cathode :electrolyte ) .
@@ -197,6 +197,10 @@
    samm:description "Energy round trip efficiency means the ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge by a standard charge"@en ;
    samm:characteristic :PercentageTrait ;
    samm:exampleValue "10"^^xsd:float .
+
+:roundTripAtHalfLife a samm:Property ;
+   samm:preferredName "Round Trip Energy at 50% Cycle Life"@en ;
+   samm:characteristic :PercentageTrait .
 
 :anode a samm:Property ;
    samm:characteristic :CharacteristicComponent .
