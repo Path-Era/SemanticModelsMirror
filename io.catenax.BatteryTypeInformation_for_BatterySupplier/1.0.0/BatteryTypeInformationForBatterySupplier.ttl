@@ -31,7 +31,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] [ samm:property :batteryStatus; samm:optional true ] :temperatureRange ) ;
+   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] :temperatureRange ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -74,10 +74,6 @@
 :documentList a samm:Property ;
    samm:characteristic :CharacteristicDocumentList .
 
-:batteryStatus a samm:Property ;
-   samm:preferredName "Battery Status"@en ;
-   samm:characteristic :Characteristic1 .
-
 :temperatureRange a samm:Property ;
    samm:preferredName "Temperature Range"@en ;
    samm:characteristic :CharacteristicTempRange .
@@ -106,10 +102,6 @@
 
 :CharacteristicDocumentList a samm-c:List ;
    samm:dataType :DocumentEntity .
-
-:Characteristic1 a samm-c:Enumeration ;
-   samm:dataType xsd:string ;
-   samm-c:values ( "original" "repurposed" "reused" "remanufactured" "waste" ) .
 
 :CharacteristicTempRange a samm:Characteristic ;
    samm:dataType :Range .
