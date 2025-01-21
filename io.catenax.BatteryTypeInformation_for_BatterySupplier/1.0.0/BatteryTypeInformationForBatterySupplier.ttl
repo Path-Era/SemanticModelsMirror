@@ -261,7 +261,7 @@
 
 :CharacteristicHeader a samm-c:Enumeration ;
    samm:dataType xsd:string ;
-   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "ResultOfTestReports" "SeperateCollectionSymbol" "SymbolAndLabelMeaning" "CadmiumAndLeadSymbols" "EU-DeclarationOFConformity" "SafetyMeasures" "SafetyInstructions" "ComponentList" ) .
+   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "ResultOfTestReports" "SeperateCollectionSymbol" "SymbolAndLabelMeaning" "CadmiumAndLeadSymbols" "EU-DeclarationOFConformity" "ComponentList" "SafetyMeasuresAndInstructions" ) .
 
 :unit a samm:Property ;
    samm:preferredName "unit"@en ;
