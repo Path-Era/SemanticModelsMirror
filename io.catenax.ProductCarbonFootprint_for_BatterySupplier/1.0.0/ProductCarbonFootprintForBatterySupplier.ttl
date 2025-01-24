@@ -46,10 +46,9 @@
    samm:dataType :EntityPCF .
 
 :EntityPCF a samm:Entity ;
-   samm:properties ( :stagePercentages [ samm:property :rawData; samm:optional true ] [ samm:property :pcfPerformanceClass; samm:optional true ] [ samm:property :webLinkToCarbonFootPrintStudy; samm:optional true ] ) .
+   samm:properties ( :sharesPerStage [ samm:property :rawData; samm:optional true ] [ samm:property :pcfPerformanceClass; samm:optional true ] [ samm:property :webLinkToCarbonFootPrintStudy; samm:optional true ] ) .
 
-:stagePercentages a samm:Property ;
-   samm:description "The sum of all entries must sum to 1 !"@en ;
+:sharesPerStage a samm:Property ;
    samm:characteristic :CharacteristicStagePercentages .
 
 :rawData a samm:Property ;
