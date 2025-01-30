@@ -31,7 +31,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] :temperatureRange [ samm:property :initialSelfDischaringRate; samm:optional true ] ) ;
+   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] :temperatureRange [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -82,6 +82,10 @@
    samm:description "Initial self discharging rate measuren in % of capacity per unit of time"@en ;
    samm:characteristic :CharacteristicInitalSelfDischarge .
 
+:capacityThresholdForExhaustion a samm:Property ;
+   samm:description "Minimum SOHC such that the cell is deemed usable"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -113,6 +117,11 @@
 :CharacteristicInitalSelfDischarge a samm:Characteristic ;
    samm:dataType :EntityInitialSelfDischarge .
 
+:UnitRelevantCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnitRelevantCharacteristic"@en ;
+   samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
+   samm:dataType :Value .
+
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -138,6 +147,11 @@
 
 :EntityInitialSelfDischarge a samm:Entity ;
    samm:properties ( :selfDischargeRate :unitOfTime ) .
+
+:Value a samm:Entity ;
+   samm:preferredName "Value"@en ;
+   samm:description "Value"@en ;
+   samm:properties ( :unit :value ) .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -237,10 +251,15 @@
    samm:characteristic samm-c:Text ;
    samm:exampleValue "5min" .
 
-:UnitRelevantCharacteristic a samm:Characteristic ;
-   samm:preferredName "UnitRelevantCharacteristic"@en ;
-   samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
-   samm:dataType :Value .
+:unit a samm:Property ;
+   samm:preferredName "unit"@en ;
+   samm:description "si unit of the related value"@en ;
+   samm:characteristic samm-c:UnitReference .
+
+:value a samm:Property ;
+   samm:preferredName "value"@en ;
+   samm:description "relevant value"@en ;
+   samm:characteristic :ValueTrait .
 
 :ValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :Float ;
@@ -259,11 +278,6 @@
 :PercentageTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :Float ;
    samm-c:constraint :PercentageConstraint .
-
-:Value a samm:Entity ;
-   samm:preferredName "Value"@en ;
-   samm:description "Value"@en ;
-   samm:properties ( :unit :value ) .
 
 :Float a samm:Characteristic ;
    samm:dataType xsd:float .
@@ -285,16 +299,6 @@
    samm-c:maxValue "1"^^xsd:float ;
    samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
    samm-c:upperBoundDefinition samm-c:AT_MOST .
-
-:unit a samm:Property ;
-   samm:preferredName "unit"@en ;
-   samm:description "si unit of the related value"@en ;
-   samm:characteristic samm-c:UnitReference .
-
-:value a samm:Property ;
-   samm:preferredName "value"@en ;
-   samm:description "relevant value"@en ;
-   samm:characteristic :ValueTrait .
 
 :precisionRange a samm:Property ;
    samm:preferredName "Precision Range"@en ;
