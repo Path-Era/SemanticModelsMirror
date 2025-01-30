@@ -131,7 +131,7 @@
    samm:properties ( :ratedCapacity [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] :capacityFade ) .
 
 :PowerCapabilityEntitiy a samm:Entity ;
-   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] [ samm:property :cRateOfCyleLifeTest; samm:optional true ] ) .
+   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] [ samm:property :cRateOfCyleLifeTest; samm:optional true ] [ samm:property :powerFade; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
    samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] [ samm:property :internalModuleResistance; samm:optional true ] [ samm:property :internalPackResistance; samm:optional true ] ) .
@@ -200,6 +200,10 @@
 
 :cRateOfCyleLifeTest a samm:Property ;
    samm:description "Measurement Parameter: Applied charge and discharge rate (C-Rate) of relevant-life test"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:powerFade a samm:Property ;
+   samm:description "In use Powerfade in %. power decrease over time measured in % "@en ;
    samm:characteristic :UnitRelevantCharacteristic .
 
 :internalCellResistance a samm:Property ;
