@@ -72,7 +72,7 @@
    samm:dataType :RawDataEntry .
 
 :EntityStagePcfValue a samm:Entity ;
-   samm:properties ( :stage1RawMaterialAquisitionPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling ) .
+   samm:properties ( :stage1RawMaterialAquisitionPreProcessing :stage2MainProductProduction :stage3Distribution :stage4EndOfLifeRecycling :declaredUnit ) .
 
 :RawDataEntry a samm:Entity ;
    samm:properties ( :description :id :data ) .
@@ -97,6 +97,11 @@
    samm:description "This attribute describes the percentage of the absolute PCF value of this component that is attributable to the 'Raw material and preprocessing' stage."@en ;
    samm:characteristic :CharacteristicStage .
 
+:declaredUnit a samm:Property ;
+   samm:preferredName "Declared Unit"@en ;
+   samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
+   samm:characteristic :CharacteristicDeclaredUnit .
+
 :description a samm:Property ;
    samm:description "This field contains the description of the contained data. Use this field to provide information on the data provided in this section"@en ;
    samm:characteristic samm-c:Text .
@@ -111,19 +116,18 @@
 :CharacteristicStage a samm:Characteristic ;
    samm:dataType :EntityStageValue .
 
+:CharacteristicDeclaredUnit a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "C02KG/KG" "C02KG/piece" ) .
+
 :CharacteristicData a samm-c:List ;
    samm:dataType :DataEntry .
 
 :EntityStageValue a samm:Entity ;
-   samm:properties ( :declaredUnit :stageValue ) .
+   samm:properties ( :stageValue ) .
 
 :DataEntry a samm:Entity ;
    samm:properties ( :key :value ) .
-
-:declaredUnit a samm:Property ;
-   samm:preferredName "Declared Unit"@en ;
-   samm:description "This attribute defines the unit of the attribute absPCFValue. It is one of C02KG/kg OR C02KG/piece\""@en ;
-   samm:characteristic :CharacteristicDeclaredUnit .
 
 :stageValue a samm:Property ;
    samm:description "Enter the PCF value of the parent stage measured in the declared unit."@en ;
@@ -134,10 +138,6 @@
 
 :value a samm:Property ;
    samm:characteristic :CharacteristicValue .
-
-:CharacteristicDeclaredUnit a samm-c:Enumeration ;
-   samm:dataType xsd:string ;
-   samm-c:values ( "C02KG/KG" "C02KG/piece" ) .
 
 :StageValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :CharacteristicStageValue ;
