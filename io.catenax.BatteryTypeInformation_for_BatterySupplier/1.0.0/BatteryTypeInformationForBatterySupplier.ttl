@@ -135,7 +135,7 @@
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
-   samm:properties ( :ratedCapacity [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] :capacityFade ) .
+   samm:properties ( [ samm:property :ratedCapacity; samm:optional true ] [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] :capacityFade ) .
 
 :PowerCapabilityEntitiy a samm:Entity ;
    samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] [ samm:property :cRateOfCyleLifeTest; samm:optional true ] ) .
