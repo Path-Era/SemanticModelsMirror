@@ -23,7 +23,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#> .
+@prefix ext-address: <urn:samm:io.catenax.shared.address_characteristic:3.0.0#> .
 @prefix ext-batPass: <urn:samm:io.catenax.battery.battery_pass:6.0.0#> .
+@prefix ext-characteristic: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix ext-email: <urn:samm:io.catenax.essincident:2.0.0#> .
 @prefix ext-passport: <urn:samm:io.catenax.generic.digital_product_passport:5.0.0#> .
 @prefix ext-ptf: <urn:samm:io.catenax.part_type_information:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
@@ -31,7 +34,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] :temperatureRange [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] [ samm:property :cRateForReferenceTest; samm:optional true ] ) ;
+   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] :batteryLifetime [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] :temperatureRange [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] [ samm:property :cRateForReferenceTest; samm:optional true ] :sparePartInformation ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -89,6 +92,10 @@
 :cRateForReferenceTest a samm:Property ;
    samm:characteristic :UnitRelevantCharacteristic .
 
+:sparePartInformation a samm:Property ;
+   samm:preferredName "Information on Spare Parts"@en ;
+   samm:characteristic :SparePartInformationCharacteristic .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -125,6 +132,9 @@
    samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
    samm:dataType :Value .
 
+:SparePartInformationCharacteristic a samm:Characteristic ;
+   samm:dataType :SparePartInformationEntity .
+
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
    samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
@@ -155,6 +165,9 @@
    samm:preferredName "Value"@en ;
    samm:description "Value"@en ;
    samm:properties ( :unit :value ) .
+
+:SparePartInformationEntity a samm:Entity ;
+   samm:properties ( :emailAddress :postalAddress :webAddress ) .
 
 :ratedCapacity a samm:Property ;
    samm:preferredName "Rated capacity"@en ;
@@ -267,6 +280,20 @@
    samm:preferredName "value"@en ;
    samm:description "relevant value"@en ;
    samm:characteristic :ValueTrait .
+
+:emailAddress a samm:Property ;
+   samm:preferredName "E-Mail Address for Spareparts"@en ;
+   samm:characteristic ext-email:ContactMailTrait ;
+   samm:exampleValue "getSpareParts@example.com" .
+
+:postalAddress a samm:Property ;
+   samm:preferredName "Postal Address for Spare Parts"@en ;
+   samm:characteristic ext-address:PostalAddress .
+
+:webAddress a samm:Property ;
+   samm:preferredName "Web address for spare parts"@en ;
+   samm:characteristic samm-c:ResourcePath ;
+   samm:exampleValue "www.example.com/getSpareParts"^^xsd:anyURI .
 
 :ValueTrait a samm-c:Trait ;
    samm-c:baseCharacteristic :Float ;
