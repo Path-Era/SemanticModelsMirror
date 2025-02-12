@@ -323,7 +323,7 @@
 
 :CharacteristicHeader a samm-c:Enumeration ;
    samm:dataType xsd:string ;
-   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "CadmiumAndLeadSymbols" "EU-DeclarationOFConformity" "SafetyMeasuresAndInstructions" "EUTaxonomyDisclosureStatement" "componentPartNumbers" ) .
+   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "EU-DeclarationOFConformity" "SafetyMeasuresAndInstructions" "EUTaxonomyDisclosureStatement" "componentPartNumbers" ) .
 
 :PercentageConstraint a samm-c:RangeConstraint ;
    samm-c:minValue "0"^^xsd:float ;
