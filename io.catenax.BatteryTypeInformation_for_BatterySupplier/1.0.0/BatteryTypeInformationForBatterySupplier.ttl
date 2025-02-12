@@ -34,7 +34,7 @@
 :BatteryTypeInformationForBatterySupplier a samm:Aspect ;
    samm:preferredName "Carbonfootprint"@en ;
    samm:description "Describes the carbonfootprint of the entity."@en ;
-   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] [ samm:property :temperatureRange; samm:optional true ] [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] [ samm:property :sparePartInformation; samm:optional true ] ) ;
+   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] [ samm:property :temperatureRange; samm:optional true ] [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] [ samm:property :sparePartInformation; samm:optional true ] [ samm:property :batteryStatus; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -93,6 +93,10 @@
    samm:preferredName "Information on Spare Parts"@en ;
    samm:characteristic :SparePartInformationCharacteristic .
 
+:batteryStatus a samm:Property ;
+   samm:preferredName "Battery Status "@en ;
+   samm:characteristic :Characteristic1 .
+
 :CharacteristicEnergy a samm:Characteristic ;
    samm:dataType :CapacityEnergySoHAndVoltageEntity .
 
@@ -131,6 +135,10 @@
 
 :SparePartInformationCharacteristic a samm:Characteristic ;
    samm:dataType :SparePartInformationEntity .
+
+:Characteristic1 a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "original" "reused" "remanufactured" "waste" ) .
 
 :CapacityEnergySoHAndVoltageEntity a samm:Entity ;
    samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
