@@ -14,6 +14,7 @@
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
 
+
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
@@ -51,10 +52,10 @@
 
 :Material a samm:Entity ;
    samm:description "Material Description of the Anode Cathode an Electrolyte"@en ;
-   samm:properties ( :criticalRawMaterialName :percentageOfMaterialWeight ) .
+   samm:properties ( :criticalRawMaterialName [ samm:property :percentageOfMaterialWeight; samm:optional true ] ) .
 
 :EntityHazardInformation a samm:Entity ;
-   samm:properties ( :hazardClassification :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex :rangeScipConcentration ) .
+   samm:properties ( :hazardClassification :locationOfHazardousSubstances :enviromentalImpact :hazardousMaterialCas :clpIndex [ samm:property :rangeScipConcentration; samm:optional true ] ) .
 
 :criticalRawMaterialName a samm:Property ;
    samm:preferredName "Critical Raw Material Name"@en ;
@@ -127,3 +128,4 @@
 
 :Constraint1 a samm-c:RegularExpressionConstraint ;
    samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
+
