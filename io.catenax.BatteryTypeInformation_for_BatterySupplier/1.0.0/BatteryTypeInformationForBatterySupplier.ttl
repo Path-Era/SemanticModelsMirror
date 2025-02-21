@@ -149,7 +149,7 @@
    samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] [ samm:property :cRateOfCyleLifeTest; samm:optional true ] ) .
 
 :InternalResistance a samm:Entity ;
-   samm:properties ( [ samm:property :internalCellResistance; samm:optional true ] [ samm:property :internalModuleResistance; samm:optional true ] [ samm:property :internalPackResistance; samm:optional true ] ) .
+   samm:properties ( [ samm:property :initialInternalCellResistance; samm:optional true ] [ samm:property :initialInternalModuleResistance; samm:optional true ] [ samm:property :initialInternalPackResistance; samm:optional true ] [ samm:property :internalResistanceIncreaseCell; samm:optional true ] [ samm:property :internalResistanceIncreaseModule; samm:optional true ] ) .
 
 :BatteryLifetime a samm:Entity ;
    samm:properties ( :expectedCycles :expectedCalenderYears ) .
@@ -220,19 +220,25 @@
    samm:description "Measurement Parameter: Applied charge and discharge rate (C-Rate) of relevant-life test"@en ;
    samm:characteristic :UnitRelevantCharacteristic .
 
-:internalCellResistance a samm:Property ;
+:initialInternalCellResistance a samm:Property ;
    samm:preferredName "Internal Cell Resistance"@en ;
    samm:description "Internal Resistance on Cell Level in Ohm, this is a pre-use value"@en ;
    samm:characteristic :UnitRelevantCharacteristic .
 
-:internalModuleResistance a samm:Property ;
+:initialInternalModuleResistance a samm:Property ;
    samm:preferredName "Internal Module Resistance"@en ;
    samm:description "Internal Resistance on Module level, measured in Ohm. This is a pre-use value"@en ;
    samm:characteristic :UnitRelevantCharacteristic .
 
-:internalPackResistance a samm:Property ;
+:initialInternalPackResistance a samm:Property ;
    samm:preferredName "Internal Pack Resistance"@en ;
    samm:description "Internal Resistance on a Pack level, measured on Ohm. Thi is a pre-use value."@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:internalResistanceIncreaseCell a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:internalResistanceIncreaseModule a samm:Property ;
    samm:characteristic :UnitRelevantCharacteristic .
 
 :expectedCycles a samm:Property ;
