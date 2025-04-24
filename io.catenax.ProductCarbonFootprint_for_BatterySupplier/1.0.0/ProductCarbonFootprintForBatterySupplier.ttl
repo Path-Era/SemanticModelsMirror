@@ -26,9 +26,10 @@
 @prefix ext-pcf: <urn:samm:io.catenax.pcf:7.0.0#> .
 @prefix ext-serial-part: <urn:samm:io.catenax.serial_part:3.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix serialPart: <urn:samm:io.catenax.serial_part:3.0.0#> .
 
 :ProductCarbonFootprintForBatterySupplier a samm:Aspect ;
-   samm:properties ( :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ext-pcf:secondaryEmissionFactorSources [ samm:property ext-pcf:primaryDataShare; samm:optional true ] [ samm:property :manufacturerPartId; samm:optional true ] ) ;
+   samm:properties ( serialPart:localIdentifiers :cxPCFValues [ samm:property ext-pcf:dqi; samm:optional true; samm:payloadName "dataQualityRating" ] ext-pcf:secondaryEmissionFactorSources [ samm:property ext-pcf:primaryDataShare; samm:optional true ] [ samm:property :manufacturerPartId; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
