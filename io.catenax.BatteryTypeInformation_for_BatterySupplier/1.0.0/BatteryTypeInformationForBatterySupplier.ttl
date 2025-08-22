@@ -1,0 +1,367 @@
+#######################################################################
+# Copyright (c) 2024 BASF SE
+# Copyright (c) 2024 Bayerische Motoren Werke Aktiengesellschaft (BMW AG)
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This work is made available under the terms of the
+# Creative Commons Attribution 4.0 International (CC-BY-4.0) license,
+# which is available at
+# https://creativecommons.org/licenses/by/4.0/legalcode.
+#
+# SPDX-License-Identifier: CC-BY-4.0
+#######################################################################
+
+
+@prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
+@prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
+@prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#> .
+@prefix ext-address: <urn:samm:io.catenax.shared.address_characteristic:3.0.0#> .
+@prefix ext-batPass: <urn:samm:io.catenax.battery.battery_pass:6.0.0#> .
+@prefix ext-characteristic: <urn:samm:org.eclipse.esmf.samm:characteristic:2.0.0#> .
+@prefix ext-email: <urn:samm:io.catenax.essincident:2.0.0#> .
+@prefix ext-passport: <urn:samm:io.catenax.generic.digital_product_passport:5.0.0#> .
+@prefix ext-ptf: <urn:samm:io.catenax.part_type_information:1.0.0#> .
+@prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
+
+:BatteryTypeInformationForBatterySupplier a samm:Aspect ;
+   samm:preferredName "Carbonfootprint"@en ;
+   samm:description "Describes the carbonfootprint of the entity."@en ;
+   samm:properties ( :energy [ samm:property :batteryCategory; samm:optional true ] [ samm:property :powerCapability; samm:optional true ] [ samm:property :resistanceInformation; samm:optional true ] [ samm:property :batteryLifetime; samm:optional true ] [ samm:property :batteryChemistry; samm:optional true ] [ samm:property :componentInformation; samm:optional true ] [ samm:property :documentList; samm:optional true ] [ samm:property ext-batPass:usableExtinguishAgent; samm:optional true ] [ samm:property ext-batPass:ratedRoundTripEfficiency; samm:optional true ] [ samm:property ext-batPass:lifetime; samm:optional true ] [ samm:property :temperatureRange; samm:optional true ] [ samm:property :initialSelfDischaringRate; samm:optional true ] [ samm:property :capacityThresholdForExhaustion; samm:optional true ] [ samm:property :sparePartInformation; samm:optional true ] [ samm:property :batteryStatus; samm:optional true ] ) ;
+   samm:operations ( ) ;
+   samm:events ( ) .
+
+:energy a samm:Property ;
+   samm:preferredName "Energy"@en ;
+   samm:description "This attribute describes energy related information about the batter."@en ;
+   samm:characteristic :CharacteristicEnergy .
+
+:batteryCategory a samm:Property ;
+   samm:preferredName "Battery Category"@en ;
+   samm:description "This Attribute describes the intended use of the battery"@en ;
+   samm:characteristic :BatteryCategory .
+
+:powerCapability a samm:Property ;
+   samm:preferredName "Power Capability"@en ;
+   samm:description "Contains all attributes associated with the Power Capability of the battery"@en ;
+   samm:characteristic :PowerCapability .
+
+:resistanceInformation a samm:Property ;
+   samm:preferredName "Resistance Informatoin"@en ;
+   samm:description "This attribute contains information about the resistance of this battery"@en ;
+   samm:characteristic :ResistanceCharacteristic .
+
+:batteryLifetime a samm:Property ;
+   samm:preferredName "Battery Lifetime"@en ;
+   samm:description "This attribute contains information on the battery lifetime"@en ;
+   samm:characteristic :LifetimeCharacteristic .
+
+:batteryChemistry a samm:Property ;
+   samm:preferredName "Battery Chemistry"@en ;
+   samm:description "Short description of the main chemical components of the battery"@en ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "Lithium-Ion" .
+
+:componentInformation a samm:Property ;
+   samm:preferredName "Component Information"@en ;
+   samm:description "Information on the main components anode, cathode an electrolyte"@en ;
+   samm:characteristic :CharacteristicComponents .
+
+:documentList a samm:Property ;
+   samm:characteristic :CharacteristicDocumentList .
+
+:temperatureRange a samm:Property ;
+   samm:preferredName "Temperature Range"@en ;
+   samm:characteristic :CharacteristicTempRange .
+
+:initialSelfDischaringRate a samm:Property ;
+   samm:description "Initial self discharging rate measuren in % of capacity per unit of time"@en ;
+   samm:characteristic :CharacteristicInitalSelfDischarge .
+
+:capacityThresholdForExhaustion a samm:Property ;
+   samm:description "Minimum SOHC such that the cell is deemed usable"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:sparePartInformation a samm:Property ;
+   samm:preferredName "Information on Spare Parts"@en ;
+   samm:characteristic :SparePartInformationCharacteristic .
+
+:batteryStatus a samm:Property ;
+   samm:preferredName "Battery Status "@en ;
+   samm:characteristic :Characteristic1 .
+
+:CharacteristicEnergy a samm:Characteristic ;
+   samm:dataType :CapacityEnergySoHAndVoltageEntity .
+
+:BatteryCategory a samm-c:Enumeration ;
+   samm:preferredName "Battery Category"@en ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "LMT battery" "ElecticVehicleBattery" "IndustrialBattery" "StationaryBatteryEnergyStorageSystem" "otherIndustrialBatteries" ) .
+
+:PowerCapability a samm:Characteristic ;
+   samm:preferredName "Power Capability"@en ;
+   samm:dataType :PowerCapabilityEntitiy .
+
+:ResistanceCharacteristic a samm:Characteristic ;
+   samm:preferredName "Resistance"@en ;
+   samm:dataType :InternalResistance .
+
+:LifetimeCharacteristic a samm:Characteristic ;
+   samm:dataType :BatteryLifetime .
+
+:CharacteristicComponents a samm:Characteristic ;
+   samm:dataType :EntityComponents .
+
+:CharacteristicDocumentList a samm-c:List ;
+   samm:dataType :DocumentEntity .
+
+:CharacteristicTempRange a samm:Characteristic ;
+   samm:dataType :Range .
+
+:CharacteristicInitalSelfDischarge a samm:Characteristic ;
+   samm:dataType :EntityInitialSelfDischarge .
+
+:UnitRelevantCharacteristic a samm:Characteristic ;
+   samm:preferredName "UnitRelevantCharacteristic"@en ;
+   samm:description "Describes a value which is unit sensitive e.g. the nominal value of a battery"@en ;
+   samm:dataType :Value .
+
+:SparePartInformationCharacteristic a samm:Characteristic ;
+   samm:dataType :SparePartInformationEntity .
+
+:Characteristic1 a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "original" "reused" "remanufactured" "waste" ) .
+
+:CapacityEnergySoHAndVoltageEntity a samm:Entity ;
+   samm:preferredName "Capacity, energy, SoH & Voltage"@en ;
+   samm:description "Entity that describes the capacity, energy, SoH & Voltage."@en ;
+   samm:properties ( [ samm:property :ratedCapacity; samm:optional true ] [ samm:property :minimumVoltage; samm:optional true ] [ samm:property :maximumVoltage; samm:optional true ] [ samm:property :nominalVoltage; samm:optional true ] :capacityFade ) .
+
+:PowerCapabilityEntitiy a samm:Entity ;
+   samm:properties ( [ samm:property :originalPowerCapability; samm:optional true ] [ samm:property :maxPermittedBatteryPower; samm:optional true ] [ samm:property :nominalToMaxPowerRatio; samm:optional true ] [ samm:property :ubeCertifiedUsableEnergy; samm:optional true ] [ samm:property :cRateOfCyleLifeTest; samm:optional true ] ) .
+
+:InternalResistance a samm:Entity ;
+   samm:properties ( [ samm:property :initialInternalCellResistance; samm:optional true ] [ samm:property :initialInternalModuleResistance; samm:optional true ] [ samm:property :initialInternalPackResistance; samm:optional true ] [ samm:property :internalResistanceIncreaseCell; samm:optional true ] [ samm:property :internalResistanceIncreaseModule; samm:optional true ] ) .
+
+:BatteryLifetime a samm:Entity ;
+   samm:properties ( :expectedCycles :expectedCalenderYears ) .
+
+:EntityComponents a samm:Entity ;
+   samm:properties ( :anode :cathode :electrolyte ) .
+
+:DocumentEntity a samm:Entity ;
+   samm:properties ( ext-passport:content ext-passport:contentType :header ) .
+
+:Range a samm:Entity ;
+   samm:properties ( :lowerBoundary :upperBoundary ) .
+
+:EntityInitialSelfDischarge a samm:Entity ;
+   samm:properties ( :selfDischargeRate :unitOfTime ) .
+
+:Value a samm:Entity ;
+   samm:preferredName "Value"@en ;
+   samm:description "Value"@en ;
+   samm:properties ( :unit :value ) .
+
+:SparePartInformationEntity a samm:Entity ;
+   samm:properties ( :emailAddress :postalAddress :webAddress ) .
+
+:ratedCapacity a samm:Property ;
+   samm:preferredName "Rated capacity"@en ;
+   samm:description "Describes the rated capacity."@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:minimumVoltage a samm:Property ;
+   samm:preferredName "Minimum voltage"@en ;
+   samm:description "Describes the minimum voltage."@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:maximumVoltage a samm:Property ;
+   samm:preferredName "Maximum voltage"@en ;
+   samm:description "Describes the maximum voltage."@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:nominalVoltage a samm:Property ;
+   samm:preferredName "nominalVoltage"@en ;
+   samm:description "nominalVoltage of the battery"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:capacityFade a samm:Property ;
+   samm:preferredName "Capacity Fade"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:originalPowerCapability a samm:Property ;
+   samm:description "Original Power capability in Watt "@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:maxPermittedBatteryPower a samm:Property ;
+   samm:preferredName "Maximum Permitted Battery Power"@en ;
+   samm:description "Maximum Permitted Battery Power in Watt"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:nominalToMaxPowerRatio a samm:Property ;
+   samm:preferredName "Nominal to max powert Ratio"@en ;
+   samm:description "Ratio between nominal allowed battery power  (Watt) and battery energy (Watt hours) regulation specifies % but ratio suggest unit hz."@en ;
+   samm:characteristic :ValueTrait .
+
+:ubeCertifiedUsableEnergy a samm:Property ;
+   samm:preferredName "Certified usable battery Entergy"@en ;
+   samm:characteristic :ValueTrait .
+
+:cRateOfCyleLifeTest a samm:Property ;
+   samm:description "Measurement Parameter: Applied charge and discharge rate (C-Rate) of relevant-life test"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:initialInternalCellResistance a samm:Property ;
+   samm:preferredName "Internal Cell Resistance"@en ;
+   samm:description "Internal Resistance on Cell Level in Ohm, this is a pre-use value"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:initialInternalModuleResistance a samm:Property ;
+   samm:preferredName "Internal Module Resistance"@en ;
+   samm:description "Internal Resistance on Module level, measured in Ohm. This is a pre-use value"@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:initialInternalPackResistance a samm:Property ;
+   samm:preferredName "Internal Pack Resistance"@en ;
+   samm:description "Internal Resistance on a Pack level, measured on Ohm. Thi is a pre-use value."@en ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:internalResistanceIncreaseCell a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:internalResistanceIncreaseModule a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:expectedCycles a samm:Property ;
+   samm:preferredName "Expected Lifetime "@en ;
+   samm:description "Expected Lifetime of this battery time measured in charge-discharge cycles"@en ;
+   samm:characteristic :ExpectedLifetimeCharacteristic ;
+   samm:exampleValue "420"^^xsd:positiveInteger .
+
+:expectedCalenderYears a samm:Property ;
+   samm:characteristic :ExpectedLifetimeCharacteristic ;
+   samm:exampleValue "69"^^xsd:positiveInteger .
+
+:anode a samm:Property ;
+   samm:characteristic :CharacteristicComponent .
+
+:cathode a samm:Property ;
+   samm:characteristic :CharacteristicComponent .
+
+:electrolyte a samm:Property ;
+   samm:characteristic :CharacteristicComponent .
+
+:header a samm:Property ;
+   samm:preferredName "header"@en ;
+   samm:description "Use the header to describe which kind of document is provided"@en ;
+   samm:characteristic :HeaderTrait .
+
+:lowerBoundary a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:upperBoundary a samm:Property ;
+   samm:characteristic :UnitRelevantCharacteristic .
+
+:selfDischargeRate a samm:Property ;
+   samm:characteristic :PercentageTrait .
+
+:unitOfTime a samm:Property ;
+   samm:characteristic samm-c:Text ;
+   samm:exampleValue "5min" .
+
+:unit a samm:Property ;
+   samm:preferredName "unit"@en ;
+   samm:description "si unit of the related value"@en ;
+   samm:characteristic samm-c:UnitReference .
+
+:value a samm:Property ;
+   samm:preferredName "value"@en ;
+   samm:description "relevant value"@en ;
+   samm:characteristic :ValueTrait .
+
+:emailAddress a samm:Property ;
+   samm:preferredName "E-Mail Address for Spareparts"@en ;
+   samm:characteristic ext-email:ContactMailTrait ;
+   samm:exampleValue "getSpareParts@example.com" .
+
+:postalAddress a samm:Property ;
+   samm:preferredName "Postal Address for Spare Parts"@en ;
+   samm:characteristic ext-address:PostalAddress .
+
+:webAddress a samm:Property ;
+   samm:preferredName "Web address for spare parts"@en ;
+   samm:characteristic samm-c:ResourcePath ;
+   samm:exampleValue "www.example.com/getSpareParts"^^xsd:anyURI .
+
+:ValueTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Float ;
+   samm-c:constraint :ConstraintGeq0 .
+
+:ExpectedLifetimeCharacteristic a samm:Characteristic ;
+   samm:dataType xsd:positiveInteger .
+
+:CharacteristicComponent a samm-c:List ;
+   samm:dataType :EntityComponent .
+
+:HeaderTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :CharacteristicHeader ;
+   samm-c:constraint ext-passport:HeaderConstraint .
+
+:PercentageTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :Float ;
+   samm-c:constraint :PercentageConstraint .
+
+:Float a samm:Characteristic ;
+   samm:dataType xsd:float .
+
+:ConstraintGeq0 a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:LESS_THAN .
+
+:EntityComponent a samm:Entity ;
+   samm:properties ( :precisionRange :percentageOfMaterialWeight :materialIdentifier ) .
+
+:CharacteristicHeader a samm-c:Enumeration ;
+   samm:dataType xsd:string ;
+   samm-c:values ( "ManualForBatteryRemoval" "ManualForBatteryDisassemblyAndDismantling" "EndUserContributionForWastePrevention" "EndUserContributionForSeperateCollection" "InformationOnReturnOnBatteries" "EU-DeclarationOFConformity" "SafetyMeasuresAndInstructions" "EUTaxonomyDisclosureStatement" "componentPartNumbers" ) .
+
+:PercentageConstraint a samm-c:RangeConstraint ;
+   samm-c:minValue "0"^^xsd:float ;
+   samm-c:maxValue "1"^^xsd:float ;
+   samm-c:lowerBoundDefinition samm-c:AT_LEAST ;
+   samm-c:upperBoundDefinition samm-c:AT_MOST .
+
+:precisionRange a samm:Property ;
+   samm:preferredName "Precision Range"@en ;
+   samm:description "Use this attribute to specify the precision "@en ;
+   samm:characteristic :PercentageTrait ;
+   samm:exampleValue ".1"^^xsd:float .
+
+:percentageOfMaterialWeight a samm:Property ;
+   samm:characteristic :PercentageTrait ;
+   samm:exampleValue "45"^^xsd:float .
+
+:materialIdentifier a samm:Property ;
+   samm:preferredName "CAS-Number of referenced Component"@en ;
+   samm:description "Use one of the critical raw materials listed in the link below"@en ;
+   samm:see <https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/critical-raw-materials_en> ;
+   samm:characteristic :MaterialIdentifierTrait ;
+   samm:exampleValue "1234-567-89" .
+
+:MaterialIdentifierTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic samm-c:Text ;
+   samm-c:constraint :ConstraintCAS .
+
+:ConstraintCAS a samm-c:RegularExpressionConstraint ;
+   samm:value "[0-9]{2,7}-[0-9]{3}-[0-9]{2}" .
+
