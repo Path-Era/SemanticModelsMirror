@@ -1,0 +1,14 @@
+{
+  "criticalRawMaterials" : [ {
+    "percentageOfMaterialWeight" : 10.0,
+    "criticalRawMaterialName" : "Antimony"
+  } ],
+  "hazardousMaterials" : [ {
+    "rangeScipConcentration" : 71.02511,
+    "locationOfHazardousSubstances" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
+    "enviromentalImpact" : "JxkyvRnL",
+    "hazardClassification" : "eOMtThyhVNLWUZNRcBaQKxI",
+    "hazardousMaterialCas" : "1234-567-89",
+    "clpIndex" : "toxic"
+  } ]
+}

@@ -1,0 +1,812 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema",
+  "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#BatteryTypeInformationForBatterySupplier",
+  "description" : "Describes the carbonfootprint of the entity.",
+  "type" : "object",
+  "components" : {
+    "schemas" : {
+      "UnitReference" : {
+        "type" : "string",
+        "pattern" : "[a-zA-Z]*:[a-zA-Z]+",
+        "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#UnitReference",
+        "description" : "Describes a Property containing a reference to one of the units in the Unit Catalog."
+      },
+      "ValueTrait" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#ValueTrait",
+        "minimum" : 0.0,
+        "exclusiveMinimum" : false
+      },
+      "UnitRelevantCharacteristic" : {
+        "description" : "Describes a value which is unit sensitive e.g. the nominal value of a battery",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#UnitRelevantCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "unit" : {
+            "description" : "si unit of the related value",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#unit",
+            "$ref" : "#/components/schemas/UnitReference"
+          },
+          "value" : {
+            "description" : "relevant value",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#value",
+            "$ref" : "#/components/schemas/ValueTrait"
+          }
+        },
+        "required" : [ "unit", "value" ]
+      },
+      "CharacteristicEnergy" : {
+        "description" : "Entity that describes the capacity, energy, SoH & Voltage.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicEnergy",
+        "type" : "object",
+        "properties" : {
+          "ratedCapacity" : {
+            "description" : "Describes the rated capacity.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#ratedCapacity",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "minimumVoltage" : {
+            "description" : "Describes the minimum voltage.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#minimumVoltage",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "maximumVoltage" : {
+            "description" : "Describes the maximum voltage.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#maximumVoltage",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "nominalVoltage" : {
+            "description" : "nominalVoltage of the battery",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#nominalVoltage",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "capacityFade" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#capacityFade",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          }
+        },
+        "required" : [ "capacityFade" ]
+      },
+      "BatteryCategory" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#BatteryCategory",
+        "enum" : [ "LMT battery", "ElecticVehicleBattery", "IndustrialBattery", "StationaryBatteryEnergyStorageSystem", "otherIndustrialBatteries" ]
+      },
+      "PowerCapability" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#PowerCapability",
+        "type" : "object",
+        "properties" : {
+          "originalPowerCapability" : {
+            "description" : "Original Power capability in Watt ",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#originalPowerCapability",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "maxPermittedBatteryPower" : {
+            "description" : "Maximum Permitted Battery Power in Watt",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#maxPermittedBatteryPower",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "nominalToMaxPowerRatio" : {
+            "description" : "Ratio between nominal allowed battery power  (Watt) and battery energy (Watt hours) regulation specifies % but ratio suggest unit hz.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#nominalToMaxPowerRatio",
+            "$ref" : "#/components/schemas/ValueTrait"
+          },
+          "ubeCertifiedUsableEnergy" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#ubeCertifiedUsableEnergy",
+            "$ref" : "#/components/schemas/ValueTrait"
+          },
+          "cRateOfCyleLifeTest" : {
+            "description" : "Measurement Parameter: Applied charge and discharge rate (C-Rate) of relevant-life test",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#cRateOfCyleLifeTest",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          }
+        }
+      },
+      "ResistanceCharacteristic" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#ResistanceCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "initialInternalCellResistance" : {
+            "description" : "Internal Resistance on Cell Level in Ohm, this is a pre-use value",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#initialInternalCellResistance",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "initialInternalModuleResistance" : {
+            "description" : "Internal Resistance on Module level, measured in Ohm. This is a pre-use value",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#initialInternalModuleResistance",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "initialInternalPackResistance" : {
+            "description" : "Internal Resistance on a Pack level, measured on Ohm. Thi is a pre-use value.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#initialInternalPackResistance",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "internalResistanceIncreaseCell" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#internalResistanceIncreaseCell",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "internalResistanceIncreaseModule" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#internalResistanceIncreaseModule",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          }
+        }
+      },
+      "ExpectedLifetimeCharacteristic" : {
+        "type" : "number",
+        "minimum" : 1,
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#ExpectedLifetimeCharacteristic"
+      },
+      "LifetimeCharacteristic" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#LifetimeCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "expectedCycles" : {
+            "description" : "Expected Lifetime of this battery time measured in charge-discharge cycles",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#expectedCycles",
+            "$ref" : "#/components/schemas/ExpectedLifetimeCharacteristic"
+          },
+          "expectedCalenderYears" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#expectedCalenderYears",
+            "$ref" : "#/components/schemas/ExpectedLifetimeCharacteristic"
+          }
+        },
+        "required" : [ "expectedCycles", "expectedCalenderYears" ]
+      },
+      "Text" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#Text",
+        "description" : "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+      },
+      "PercentageTrait" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#PercentageTrait",
+        "maximum" : 1.0,
+        "exclusiveMaximum" : false,
+        "minimum" : 0.0,
+        "exclusiveMinimum" : false
+      },
+      "MaterialIdentifierTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#MaterialIdentifierTrait",
+        "description" : "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc.",
+        "pattern" : "[0-9]{2,7}-[0-9]{3}-[0-9]{2}"
+      },
+      "EntityComponent" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#EntityComponent",
+        "type" : "object",
+        "properties" : {
+          "precisionRange" : {
+            "description" : "Use this attribute to specify the precision ",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#precisionRange",
+            "$ref" : "#/components/schemas/PercentageTrait"
+          },
+          "percentageOfMaterialWeight" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#percentageOfMaterialWeight",
+            "$ref" : "#/components/schemas/PercentageTrait"
+          },
+          "materialIdentifier" : {
+            "description" : "Use one of the critical raw materials listed in the link below",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#materialIdentifier",
+            "$ref" : "#/components/schemas/MaterialIdentifierTrait"
+          }
+        },
+        "required" : [ "precisionRange", "percentageOfMaterialWeight", "materialIdentifier" ]
+      },
+      "CharacteristicComponent" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicComponent",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/EntityComponent"
+        }
+      },
+      "CharacteristicComponents" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicComponents",
+        "type" : "object",
+        "properties" : {
+          "anode" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#anode",
+            "$ref" : "#/components/schemas/CharacteristicComponent"
+          },
+          "cathode" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#cathode",
+            "$ref" : "#/components/schemas/CharacteristicComponent"
+          },
+          "electrolyte" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#electrolyte",
+            "$ref" : "#/components/schemas/CharacteristicComponent"
+          }
+        },
+        "required" : [ "anode", "cathode", "electrolyte" ]
+      },
+      "HeaderTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#HeaderTrait",
+        "enum" : [ "ManualForBatteryRemoval", "ManualForBatteryDisassemblyAndDismantling", "EndUserContributionForWastePrevention", "EndUserContributionForSeperateCollection", "InformationOnReturnOnBatteries", "EU-DeclarationOFConformity", "SafetyMeasuresAndInstructions", "EUTaxonomyDisclosureStatement", "componentPartNumbers" ],
+        "description" : "Constraint for a maximum of 100 characters.",
+        "maxLength" : 100
+      },
+      "DocumentEntity" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#DocumentEntity",
+        "type" : "object",
+        "properties" : {
+          "content" : {
+            "description" : "The content of the document e.g a link.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#content",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "contentType" : {
+            "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#contentType",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "header" : {
+            "description" : "Use the header to describe which kind of document is provided",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#header",
+            "$ref" : "#/components/schemas/HeaderTrait"
+          }
+        },
+        "required" : [ "content", "contentType", "header" ]
+      },
+      "CharacteristicDocumentList" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicDocumentList",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DocumentEntity"
+        }
+      },
+      "HeaderTrait0" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#HeaderTrait",
+        "description" : "Constraint for a maximum of 100 characters.",
+        "maxLength" : 100
+      },
+      "DocumentationEntity" : {
+        "description" : "Entity for a document with a header, type and content.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#DocumentationEntity",
+        "type" : "object",
+        "properties" : {
+          "content" : {
+            "description" : "The content of the document e.g a link.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#content",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "contentType" : {
+            "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#contentType",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "header" : {
+            "description" : "The header as a short description of the document with a maximum of 100 characters.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#header",
+            "$ref" : "#/components/schemas/HeaderTrait0"
+          }
+        },
+        "required" : [ "content", "contentType", "header" ]
+      },
+      "DocumentList" : {
+        "description" : "List of documents.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:5.0.0#DocumentList",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DocumentationEntity"
+        }
+      },
+      "ExtinguishAgentEntity" : {
+        "description" : "Entity for the extinguish agents.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#ExtinguishAgentEntity",
+        "type" : "object",
+        "properties" : {
+          "document" : {
+            "description" : "Documentation about the extinguishing agent.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#agentDocument",
+            "$ref" : "#/components/schemas/DocumentList"
+          },
+          "media" : {
+            "description" : "The agent used to extinguish a fire, based on the fire class. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1)(a) and refers to Annex VI Part A:\n9. usable extinguishing agent.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#usableExtinguishingMedia",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "fireClass" : {
+            "description" : "Safety classification based on the chemistry and construction of the battery. It determines the means of handling a fire caused by the battery. Possible values are A, B and C and a combination of these.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#fireClass",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "media", "fireClass" ]
+      },
+      "ExtinguishAgentList" : {
+        "description" : "List of extinguish agents.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#ExtinguishAgentList",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/ExtinguishAgentEntity"
+        }
+      },
+      "PercentMeasurement" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#PercentMeasurement",
+        "description" : "Measurement in percent as double."
+      },
+      "DegreeMeasurement" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#DegreeMeasurement",
+        "description" : "Degree measurement in celsius."
+      },
+      "RatedRoundTripEfficiencyCharacteristic" : {
+        "description" : "Characteristic for the rated round trip efficiency.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#RatedRoundTripEfficiencyCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "depthOfDischarge" : {
+            "description" : "Depth of discharge is a measure used to quantify the extent to which the battery has been discharged relative to its maximum capacity during its cycle-life testing. It represents the percentage of the total available capacity that has been drained or used during a particular discharge cycle. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (4)  (a) refers to Article 10 (1), refers to Annex IV Part B:\n3. Depth of discharge in the cycle-life test.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#depthOfDischarge",
+            "$ref" : "#/components/schemas/PercentMeasurement"
+          },
+          "initial" : {
+            "description" : "The efficiency value of a battery refers to the ratio of useful output energy to the input energy, expressed as a percentage. It quantifies how effectively a battery can convert and deliver stored energy during the discharge process relative to the energy input during charging. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1):\n(n) initial round trip energy efficiency and at 50 % of cycle-life.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#initialRoundTripEfficiency",
+            "$ref" : "#/components/schemas/PercentMeasurement"
+          },
+          "50PercentLife" : {
+            "description" : "The round trip efficiency at 50 percent refers to the efficiency of a rechargeable battery's energy storage and retrieval process when the battery has undergone approximately half of its expected number of charge-discharge cycles. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1):\n(n) initial round trip energy efficiency and at 50 % of cycle-life.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#roundTripEfficiency50Percent",
+            "$ref" : "#/components/schemas/PercentMeasurement"
+          },
+          "temperature" : {
+            "description" : "Temperature refers to the temperature of the battery during it's cycle-life testing or as boundary condition for other rated values in celsius.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#testingTemperature",
+            "$ref" : "#/components/schemas/DegreeMeasurement"
+          }
+        },
+        "required" : [ "depthOfDischarge", "initial", "50PercentLife" ]
+      },
+      "IntegerCharacteristic" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#IntegerCharacteristic",
+        "description" : "Characteristic for an integer value."
+      },
+      "CRateCharacteristic" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#CRateCharacteristic",
+        "description" : "The C-rate, also known as the charge/discharge rate, quantifies how quickly a battery is charged or discharged in relation to its capacity. It is dimensionless."
+      },
+      "CycleLifeCharacteristic" : {
+        "description" : "Cycle Life Characteristic for the battery lifetime testing.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#CycleLifeCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "temperature" : {
+            "description" : "Temperature refers to the temperature of the battery during it's cycle-life testing or as boundary condition for other rated values in celsius.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#testingTemperature",
+            "$ref" : "#/components/schemas/DegreeMeasurement"
+          },
+          "cycles" : {
+            "description" : "Cycle refers to one complete charging and discharging sequence. Either during the battery's cycle-life testing or as full equivalent while in use.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#cycles",
+            "$ref" : "#/components/schemas/IntegerCharacteristic"
+          },
+          "depthOfDischarge" : {
+            "description" : "Depth of discharge is a measure used to quantify the extent to which the battery has been discharged relative to its maximum capacity during its cycle-life testing. It represents the percentage of the total available capacity that has been drained or used during a particular discharge cycle. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (4)  (a) refers to Article 10 (1), refers to Annex IV Part B:\n3. Depth of discharge in the cycle-life test.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#depthOfDischarge",
+            "$ref" : "#/components/schemas/PercentMeasurement"
+          },
+          "appliedChargeRate" : {
+            "description" : "The applied charge rate (c rate) refers to the rate at which a battery is charged. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1):\n(p) c-rate of relevant cycle-life test;\nand Annex XIII (4)(a) refers to Article 10(1) refers to Annex IV Part B:\n1. Applied discharge rate and charge rate.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#appliedChargeRate",
+            "$ref" : "#/components/schemas/CRateCharacteristic"
+          },
+          "appliedDischargeRate" : {
+            "description" : "The applied discharge rate (c rate) refers to the rate at which a battery is discharged. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1):\n(p) c-rate of relevant cycle-life test;\nand Annex XIII (4)(a) refers to Article 10(1) refers to Annex IV Part B:\n1. Applied discharge rate and charge rate.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#appliedDischargeRate",
+            "$ref" : "#/components/schemas/CRateCharacteristic"
+          }
+        },
+        "required" : [ "temperature", "cycles", "depthOfDischarge", "appliedChargeRate", "appliedDischargeRate" ]
+      },
+      "LifeCycleCharacteristic" : {
+        "description" : "Life Cycle Characteristic with attributes for the lifetime evaluation of a battery.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#LifeCycleCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "expectedYears" : {
+            "description" : "The expected years refer to the expected life-time of the battery before it starts heavily degrading in its capacity and c-rate in calendar years. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (4) (a) refers to the Article 10 (1) refers to Annex IV Part A: \n5. The expected life-time of the battery under the reference conditions for which it has been designed, in terms of cycles, except for non-cycle applications, and calendar years.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#expectedYears",
+            "$ref" : "#/components/schemas/IntegerCharacteristic"
+          },
+          "report" : {
+            "description" : "The test reports refer to the testing conducted during the determination of the rated values of the battery. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (3):\n[...] results of test reports proving compliance with the requirements laid down in this Regulation or any delegated or implementing act adopted pursuant to this Regulation.\nAnd Annex XIII (4)(a) refers to Article 10(1) and refer to Annex IV Part B:\n5. Any calculations performed with the measured parameters, if applicable.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#testReport",
+            "$ref" : "#/components/schemas/DocumentList"
+          },
+          "cycleLifeTesting" : {
+            "description" : "The cycle life testing of the battery.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#cycleLifeTesting",
+            "$ref" : "#/components/schemas/CycleLifeCharacteristic"
+          }
+        },
+        "required" : [ "expectedYears", "report", "cycleLifeTesting" ]
+      },
+      "CharacteristicTempRange" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicTempRange",
+        "type" : "object",
+        "properties" : {
+          "lowerBoundary" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#lowerBoundary",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          },
+          "upperBoundary" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#upperBoundary",
+            "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+          }
+        },
+        "required" : [ "lowerBoundary", "upperBoundary" ]
+      },
+      "CharacteristicInitalSelfDischarge" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#CharacteristicInitalSelfDischarge",
+        "type" : "object",
+        "properties" : {
+          "selfDischargeRate" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#selfDischargeRate",
+            "$ref" : "#/components/schemas/PercentageTrait"
+          },
+          "unitOfTime" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#unitOfTime",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "selfDischargeRate", "unitOfTime" ]
+      },
+      "ContactMailTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.essincident:2.0.0#ContactMailTrait",
+        "description" : "Regular expression for a contact mail address.",
+        "pattern" : "^[a-zA-Z0-9.!#$%&?*+\\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+      },
+      "ThoroughfareTechnicalKeyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#ThoroughfareTechnicalKeyCharacteristic",
+        "description" : "Characteristic of the technical key of a thoroughfare.",
+        "enum" : [ "STREET", "INDUSTRIAL_ZONE", "OTHER", "RIVER", "SQUARE" ]
+      },
+      "ThoroughfareEntity" : {
+        "description" : "Entity for a thoroughfare which consists of a type, value and number.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#ThoroughfareEntity",
+        "type" : "object",
+        "properties" : {
+          "technicalKey" : {
+            "description" : "Technical key of a thoroughfare. As specified by BPDM, this can be a \"STREET\" or a different type.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareTechnicalKey",
+            "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+          },
+          "value" : {
+            "description" : "Value of a thoroughfare, e.g. name of a street.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareValue",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "number" : {
+            "description" : "Number of a thoroughfare. As used differently in international context, this number can contain both numerical and alphanumerical values.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareNumber",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "technicalKey", "value", "number" ]
+      },
+      "ThoroughfareCharacteristic" : {
+        "description" : "Characteristic for defining a thoroughfare which can consist of a type (e.g. \"STREET\"), value (e.g. \"Bernstra?e\") and number (e.g. \"45\"). Model follows the specification of BPDM.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#ThoroughfareCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ThoroughfareEntity"
+        } ]
+      },
+      "LocalityTechnicalKeyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#LocalityTechnicalKeyCharacteristic",
+        "description" : "Characteristic of the technical key of a locality",
+        "enum" : [ "BLOCK", "CITY", "DISTRICT", "OTHER", "POST_OFFICE_CITY", "QUARTER" ]
+      },
+      "LocalityEntity" : {
+        "description" : "Entity for a locality which consists of a key and a value.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#LocalityEntity",
+        "type" : "object",
+        "properties" : {
+          "technicalKey" : {
+            "description" : "Technical key of a locality.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityTechnicalKey",
+            "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+          },
+          "value" : {
+            "description" : "Value of a locality, e.g. name of a city (\"Mannheim\").",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityValue",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "technicalKey", "value" ]
+      },
+      "LocalityCharacteristic" : {
+        "description" : "Characteristic for defining a locality which belongs to an address and which consists of a type (e.g. \"CITY\") and value (e.g. \"Mannheim\"). Model follows the specification of BPDM.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#LocalityCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/LocalityEntity"
+        } ]
+      },
+      "PremiseTechnicalKeyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PremiseTechnicalKeyCharacteristic",
+        "description" : "Characteristic of the technical key of a premise.",
+        "enum" : [ "BUILDING", "HARBOUR", "LEVEL", "OTHER", "ROOM", "SUITE", "UNIT", "WAREHOUSE" ]
+      },
+      "PremiseEntity" : {
+        "description" : "Entity for a premise which consists of a type (technical key) and a value.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PremiseEntity",
+        "type" : "object",
+        "properties" : {
+          "technicalKey" : {
+            "description" : "Technical key of a premise.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseTechnicalKey",
+            "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+          },
+          "value" : {
+            "description" : "Value of a premise, e.g. name or designation of a particular site.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseValue",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "technicalKey", "value" ]
+      },
+      "PremiseCharacteristic" : {
+        "description" : "Characteristic for defining a premise which consists of a technical key (e.g. \"BUILDING\" or \"OTHER\") and a value (e.g. \"Werk 1\").",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PremiseCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PremiseEntity"
+        } ]
+      },
+      "PostalDeliveryPointTechnicalKeyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostalDeliveryPointTechnicalKeyCharacteristic",
+        "description" : "Characteristic of the technical key of a postal delivery point.",
+        "enum" : [ "INTERURBAN_DELIVERY_POINT", "MAIL_STATION", "MAILBOX", "OTHER", "POST_OFFICE_BOX" ]
+      },
+      "PostalDeliveryPointEntity" : {
+        "description" : "Entity for a postal delivery point which consists of a technical key and a value.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostalDeliveryPointEntity",
+        "type" : "object",
+        "properties" : {
+          "technicalKey" : {
+            "description" : "Technical key of a postal delivery point.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointTechnicalKey",
+            "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+          },
+          "value" : {
+            "description" : "Value of a postal delivery point, e.g. designation of a gate.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointValue",
+            "$ref" : "#/components/schemas/Text"
+          }
+        },
+        "required" : [ "technicalKey", "value" ]
+      },
+      "PostalDeliveryPointCharacteristic" : {
+        "description" : "Characteristic for defining a postal delivery point which consists of a technical key (e.g. \"MAILBOX\" or \"OTHER\") and a value. Model follows the specification of BPDM.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostalDeliveryPointCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PostalDeliveryPointEntity"
+        } ]
+      },
+      "CountryTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#CountryTrait",
+        "description" : "Regular expression for designation of a short name of a country as defined in ISO 3166-2.",
+        "pattern" : "([A-Z]{2}-[A-Z0-9]{1,3}|)"
+      },
+      "CountryEntity" : {
+        "description" : "Entity definition for a country.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#CountryEntity",
+        "type" : "object",
+        "properties" : {
+          "shortName" : {
+            "description" : "The short variation of the name of the country.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#countryShortName",
+            "$ref" : "#/components/schemas/CountryTrait"
+          }
+        },
+        "required" : [ "shortName" ]
+      },
+      "CountryCharacteristic" : {
+        "description" : "Characteristic of a country belonging to an address",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#CountryCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/CountryEntity"
+        } ]
+      },
+      "PostCodeTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostCodeTrait",
+        "description" : "Regular expression for post codes.",
+        "pattern" : "^[a-z0-9][a-z0-9\\- ]{0,10}$"
+      },
+      "PostCodeTechnicalKeyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostCodeTechnicalKeyCharacteristic",
+        "description" : "Characteristic for the technical key of a post code.",
+        "enum" : [ "CEDEX", "LARGE_MAIL_USER", "OTHER", "POST_BOX", "REGULAR" ]
+      },
+      "PostCodeEntity" : {
+        "description" : "Entity for a postcode which consists of a type plus a value.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostCodeEntity",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "description" : "The value of a post code.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeValue",
+            "$ref" : "#/components/schemas/PostCodeTrait"
+          },
+          "technicalKey" : {
+            "description" : "The technical key of a post code.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeTechnicalKey",
+            "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+          }
+        },
+        "required" : [ "value", "technicalKey" ]
+      },
+      "PostCodeCharacteristic" : {
+        "description" : "Characteristic for defining a postcode which can consist of a type (e.g. \"REGULAR\" for zip codes) and a value (e.g. \"98765-4321\"). Model follows the specification of BPDM.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostCodeCharacteristic",
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PostCodeEntity"
+        } ]
+      },
+      "PostalAddress" : {
+        "description" : "A characteristic to express the postal address and which is intended to be referenced by other aspects.",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#PostalAddress",
+        "type" : "object",
+        "properties" : {
+          "thoroughfare" : {
+            "description" : "Street or thorough road name.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfare",
+            "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+          },
+          "locality" : {
+            "description" : "Locality belonging to an address.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#locality",
+            "$ref" : "#/components/schemas/LocalityCharacteristic"
+          },
+          "premise" : {
+            "description" : "Premise of an address, e.g. a specific \"BUILDING\" but can also be used for naming a particular site.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premise",
+            "$ref" : "#/components/schemas/PremiseCharacteristic"
+          },
+          "postalDeliveryPoint" : {
+            "description" : "Delivery point, e.g. designation of a gate.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPoint",
+            "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+          },
+          "country" : {
+            "description" : "Country of an address.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#country",
+            "$ref" : "#/components/schemas/CountryCharacteristic"
+          },
+          "postCode" : {
+            "description" : "Postal code of the address.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCode",
+            "$ref" : "#/components/schemas/PostCodeCharacteristic"
+          }
+        },
+        "required" : [ "thoroughfare", "locality", "country", "postCode" ]
+      },
+      "ResourcePath" : {
+        "type" : "string",
+        "format" : "uri",
+        "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#ResourcePath",
+        "description" : "The path of a resource."
+      },
+      "SparePartInformationCharacteristic" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#SparePartInformationCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "emailAddress" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#emailAddress",
+            "$ref" : "#/components/schemas/ContactMailTrait"
+          },
+          "postalAddress" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#postalAddress",
+            "$ref" : "#/components/schemas/PostalAddress"
+          },
+          "webAddress" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#webAddress",
+            "$ref" : "#/components/schemas/ResourcePath"
+          }
+        },
+        "required" : [ "emailAddress", "postalAddress", "webAddress" ]
+      },
+      "Characteristic1" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#Characteristic1",
+        "enum" : [ "original", "reused", "remanufactured", "waste" ]
+      }
+    }
+  },
+  "properties" : {
+    "energy" : {
+      "description" : "This attribute describes energy related information about the batter.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#energy",
+      "$ref" : "#/components/schemas/CharacteristicEnergy"
+    },
+    "batteryCategory" : {
+      "description" : "This Attribute describes the intended use of the battery",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#batteryCategory",
+      "$ref" : "#/components/schemas/BatteryCategory"
+    },
+    "powerCapability" : {
+      "description" : "Contains all attributes associated with the Power Capability of the battery",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#powerCapability",
+      "$ref" : "#/components/schemas/PowerCapability"
+    },
+    "resistanceInformation" : {
+      "description" : "This attribute contains information about the resistance of this battery",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#resistanceInformation",
+      "$ref" : "#/components/schemas/ResistanceCharacteristic"
+    },
+    "batteryLifetime" : {
+      "description" : "This attribute contains information on the battery lifetime",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#batteryLifetime",
+      "$ref" : "#/components/schemas/LifetimeCharacteristic"
+    },
+    "batteryChemistry" : {
+      "description" : "Short description of the main chemical components of the battery",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#batteryChemistry",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "componentInformation" : {
+      "description" : "Information on the main components anode, cathode an electrolyte",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#componentInformation",
+      "$ref" : "#/components/schemas/CharacteristicComponents"
+    },
+    "documentList" : {
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#documentList",
+      "$ref" : "#/components/schemas/CharacteristicDocumentList"
+    },
+    "usableExtinguishAgent" : {
+      "description" : "The usable extinguish agents for the battery in case of a fire. This attribute is mentioned in the Battery regulation 2023/1542 from 12 July 2023 in Annex XIII (1)(a) and refers to Annex VI Part A\n9. usable extinguishing agent.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#usableExtinguishAgent",
+      "$ref" : "#/components/schemas/ExtinguishAgentList"
+    },
+    "ratedRoundTripEfficiency" : {
+      "description" : "The efficiency value of a battery refers to the ratio of useful output energy to the input energy, expressed as a percentage. With the option to include temperature values voluntarily.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#ratedRoundTripEfficiency",
+      "$ref" : "#/components/schemas/RatedRoundTripEfficiencyCharacteristic"
+    },
+    "lifetime" : {
+      "description" : "Attributes for the lifetime evaluation of a battery.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.battery.battery_pass:6.0.0#lifetime",
+      "$ref" : "#/components/schemas/LifeCycleCharacteristic"
+    },
+    "temperatureRange" : {
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#temperatureRange",
+      "$ref" : "#/components/schemas/CharacteristicTempRange"
+    },
+    "initialSelfDischaringRate" : {
+      "description" : "Initial self discharging rate measuren in % of capacity per unit of time",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#initialSelfDischaringRate",
+      "$ref" : "#/components/schemas/CharacteristicInitalSelfDischarge"
+    },
+    "capacityThresholdForExhaustion" : {
+      "description" : "Minimum SOHC such that the cell is deemed usable",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#capacityThresholdForExhaustion",
+      "$ref" : "#/components/schemas/UnitRelevantCharacteristic"
+    },
+    "sparePartInformation" : {
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#sparePartInformation",
+      "$ref" : "#/components/schemas/SparePartInformationCharacteristic"
+    },
+    "batteryStatus" : {
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.BatteryTypeInformation_for_BatterySupplier:1.0.0#batteryStatus",
+      "$ref" : "#/components/schemas/Characteristic1"
+    }
+  },
+  "required" : [ "energy" ]
+}

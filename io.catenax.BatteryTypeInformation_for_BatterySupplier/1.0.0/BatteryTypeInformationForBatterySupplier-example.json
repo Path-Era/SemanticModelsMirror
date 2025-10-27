@@ -1,0 +1,169 @@
+{
+  "temperatureRange" : {
+    "upperBoundary" : {
+      "value" : 1.2733186E38,
+      "unit" : "unit:hectopascal"
+    },
+    "lowerBoundary" : {
+      "value" : 1.6851849E38,
+      "unit" : "unit:hectopascal"
+    }
+  },
+  "batteryCategory" : "LMT battery",
+  "batteryChemistry" : "Lithium-Ion",
+  "powerCapability" : {
+    "originalPowerCapability" : {
+      "value" : 1.3732747E37,
+      "unit" : "unit:hectopascal"
+    },
+    "nominalToMaxPowerRatio" : 1.4070894E38,
+    "maxPermittedBatteryPower" : {
+      "value" : 1.5353703E38,
+      "unit" : "unit:hectopascal"
+    },
+    "cRateOfCyleLifeTest" : {
+      "value" : 3.2342917E38,
+      "unit" : "unit:hectopascal"
+    },
+    "ubeCertifiedUsableEnergy" : 2.540183E38
+  },
+  "usableExtinguishAgent" : [ {
+    "fireClass" : "A, B",
+    "document" : [ {
+      "contentType" : "URL",
+      "header" : "Example Document XYZ",
+      "content" : "https://dummy.link"
+    } ],
+    "media" : "Dry Powder"
+  } ],
+  "lifetime" : {
+    "report" : [ {
+      "contentType" : "URL",
+      "header" : "Example Document XYZ",
+      "content" : "https://dummy.link"
+    } ],
+    "cycleLifeTesting" : {
+      "temperature" : 20.0,
+      "depthOfDischarge" : 90.5,
+      "appliedDischargeRate" : 4.0,
+      "cycles" : 1500,
+      "appliedChargeRate" : 3.0
+    },
+    "expectedYears" : 8
+  },
+  "capacityThresholdForExhaustion" : {
+    "value" : 8.98519E37,
+    "unit" : "unit:hectopascal"
+  },
+  "initialSelfDischaringRate" : {
+    "selfDischargeRate" : 0.77460563,
+    "unitOfTime" : "5min"
+  },
+  "sparePartInformation" : {
+    "emailAddress" : "getSpareParts@example.com",
+    "webAddress" : "www.example.com/getSpareParts",
+    "postalAddress" : {
+      "locality" : {
+        "value" : "Mannheim",
+        "technicalKey" : "BLOCK"
+      },
+      "country" : {
+        "shortName" : ""
+      },
+      "postCode" : {
+        "value" : "98765-4321",
+        "technicalKey" : "CEDEX"
+      },
+      "thoroughfare" : {
+        "value" : "Bernstrasse",
+        "number" : "45",
+        "technicalKey" : "STREET"
+      },
+      "premise" : {
+        "value" : "Werk 1",
+        "technicalKey" : "BUILDING"
+      },
+      "postalDeliveryPoint" : {
+        "value" : "Tor 1",
+        "technicalKey" : "INTERURBAN_DELIVERY_POINT"
+      }
+    }
+  },
+  "documentList" : [ {
+    "contentType" : "URL",
+    "header" : "eOMtThyhVNLWUZNRcBaQKxIyedUsFwdkelQbxeTeQOvaScfqIOOmaaJxkyvRnLRYtGKbgicZ",
+    "content" : "https://dummy.link"
+  } ],
+  "batteryStatus" : "original",
+  "componentInformation" : {
+    "cathode" : [ {
+      "precisionRange" : 0.1,
+      "percentageOfMaterialWeight" : 45.0,
+      "materialIdentifier" : "1234-567-89"
+    } ],
+    "anode" : [ {
+      "precisionRange" : 0.1,
+      "percentageOfMaterialWeight" : 45.0,
+      "materialIdentifier" : "1234-567-89"
+    } ],
+    "electrolyte" : [ {
+      "precisionRange" : 0.1,
+      "percentageOfMaterialWeight" : 45.0,
+      "materialIdentifier" : "1234-567-89"
+    } ]
+  },
+  "resistanceInformation" : {
+    "internalResistanceIncreaseCell" : {
+      "value" : 2.0229264E38,
+      "unit" : "unit:hectopascal"
+    },
+    "internalResistanceIncreaseModule" : {
+      "value" : 1.5797806E38,
+      "unit" : "unit:hectopascal"
+    },
+    "initialInternalCellResistance" : {
+      "value" : 4.2713046E37,
+      "unit" : "unit:hectopascal"
+    },
+    "initialInternalModuleResistance" : {
+      "value" : 4.661357E37,
+      "unit" : "unit:hectopascal"
+    },
+    "initialInternalPackResistance" : {
+      "value" : 3.0984948E38,
+      "unit" : "unit:hectopascal"
+    }
+  },
+  "batteryLifetime" : {
+    "expectedCycles" : 420,
+    "expectedCalenderYears" : 69
+  },
+  "ratedRoundTripEfficiency" : {
+    "depthOfDischarge" : 90.5,
+    "temperature" : 20.0,
+    "50PercentLife" : 89.0,
+    "initial" : 96.0
+  },
+  "energy" : {
+    "ratedCapacity" : {
+      "value" : 1.6551588E38,
+      "unit" : "unit:hectopascal"
+    },
+    "nominalVoltage" : {
+      "value" : 2.9522465E38,
+      "unit" : "unit:hectopascal"
+    },
+    "maximumVoltage" : {
+      "value" : 1.2747097E38,
+      "unit" : "unit:hectopascal"
+    },
+    "minimumVoltage" : {
+      "value" : 1.6758499E38,
+      "unit" : "unit:hectopascal"
+    },
+    "capacityFade" : {
+      "value" : 3.1721157E38,
+      "unit" : "unit:hectopascal"
+    }
+  }
+}

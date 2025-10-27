@@ -1,0 +1,116 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema",
+  "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#DeclarableSubstancesForBatterySupplier:",
+  "description" : "Describes the material master data. ",
+  "type" : "object",
+  "components" : {
+    "schemas" : {
+      "CharacteristicCriticalRawMaterialName" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#CharacteristicCriticalRawMaterialName",
+        "description" : "Name of the critical raw material name one of the list provided, used list of 2023",
+        "enum" : [ "Antimony", "Arsenic", "Aluminium/Bauxite", "Baryte", "Beryllium", "Bismuth", "Boron/borates", "Cobalt", "Coking Coal", "Copper", "Feldspar", "Fluorspar", "Gallium", "Germanium", "Hafnium", "Helium", "Heavy Rare Earth Elements", "Light Rare Earth Elements", "Lithium", "Magnesium", "Manganese", "Natural Graphite", "Nickel - battery grade", "Niobium", "Phosphate rock", "Phosphorus", "Platiunm Group Metals", "Scandium", "Silicon metal", "Strontium", "Tantalum", "Titanium metal", "Tungsten", "Vanadium" ]
+      },
+      "MassPercentageTrait" : {
+        "type" : "number",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#MassPercentageTrait",
+        "description" : "Percentage of related Material ",
+        "maximum" : 100.0,
+        "exclusiveMaximum" : false,
+        "minimum" : 0.0,
+        "exclusiveMinimum" : false
+      },
+      "Material" : {
+        "description" : "Material Description of the Anode Cathode an Electrolyte",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#Material",
+        "type" : "object",
+        "properties" : {
+          "criticalRawMaterialName" : {
+            "description" : "Name of critical Raw Material",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#criticalRawMaterialName",
+            "$ref" : "#/components/schemas/CharacteristicCriticalRawMaterialName"
+          },
+          "percentageOfMaterialWeight" : {
+            "description" : "contains the Mass percentage of this material of the Anode, Cathode or Electrolyte ",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#percentageOfMaterialWeight",
+            "$ref" : "#/components/schemas/MassPercentageTrait"
+          }
+        },
+        "required" : [ "criticalRawMaterialName" ]
+      },
+      "CriciticalRawMaterialListCharacteristic" : {
+        "description" : "This List contains the common names of all Critical Raw Materials contained in this product. The names of the Critical Raw Materials are give by the EU. ",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#CriciticalRawMaterialListCharacteristic",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Material"
+        }
+      },
+      "Text" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#Text",
+        "description" : "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+      },
+      "CasNumberTrait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#CasNumberTrait",
+        "pattern" : "[0-9]{2,7}-[0-9]{3}-[0-9]{2}"
+      },
+      "EntityHazardInformation" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#EntityHazardInformation",
+        "type" : "object",
+        "properties" : {
+          "hazardClassification" : {
+            "description" : "The classification and category is defined by the CLP Regulation",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#hazardClassification",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "locationOfHazardousSubstances" : {
+            "description" : "Description where the hazardous substances are located within this product",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#locationOfHazardousSubstances",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "enviromentalImpact" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#enviromentalImpact",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "hazardousMaterialCas" : {
+            "description" : "CAS number of the hazardous material",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#hazardousMaterialCas",
+            "$ref" : "#/components/schemas/CasNumberTrait"
+          },
+          "clpIndex" : {
+            "description" : "This contains the CLP Index for the related material",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#clpIndex",
+            "$ref" : "#/components/schemas/Text"
+          },
+          "rangeScipConcentration" : {
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#rangeScipConcentration",
+            "$ref" : "#/components/schemas/MassPercentageTrait"
+          }
+        },
+        "required" : [ "hazardClassification", "locationOfHazardousSubstances", "enviromentalImpact", "hazardousMaterialCas", "clpIndex" ]
+      },
+      "CharacteristicHazardousMaterialsList" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#CharacteristicHazardousMaterialsList",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/EntityHazardInformation"
+        }
+      }
+    }
+  },
+  "properties" : {
+    "criticalRawMaterials" : {
+      "description" : "This list contains a representation of all critical raw materials used within the related product",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#criticalRawMaterials",
+      "$ref" : "#/components/schemas/CriciticalRawMaterialListCharacteristic"
+    },
+    "hazardousMaterials" : {
+      "description" : "This list contains all Hazardous Materials contained in this product",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.declarable_substances_for_BatterySupplier:1.0.0#hazardousMaterials",
+      "$ref" : "#/components/schemas/CharacteristicHazardousMaterialsList"
+    }
+  },
+  "required" : [ "criticalRawMaterials", "hazardousMaterials" ]
+}
